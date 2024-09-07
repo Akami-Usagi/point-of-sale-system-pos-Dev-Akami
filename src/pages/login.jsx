@@ -26,10 +26,11 @@ const FormDiv = styled.div`
 `
 const Label = styled.label`
     color: gray;
-    font-size: x-large;
+    font-size: large;
     margin-bottom: 10px;
     position: relative;
     left: 10px;
+    
 `
 const Input = styled.input`
     height: 40px;
@@ -89,7 +90,7 @@ export default function Login(){
                 <Input type="text" placeholder="Ingrese su Usuario"/>
                 <Label htmlFor="username">Contraseña</Label>
                 <Input type="text" placeholder="Ingrese su Contraseña"/>
-                <ForgotText>Olvido la contraseña? <Link to={"/register"}>Restablecer contraseña</Link></ForgotText>
+                <ForgotText>Olvido la contraseña? <Link to={"/recovery"}>Restablecer contraseña</Link></ForgotText>
                 <Button>Iniciar Sesion</Button>
                 <RegisterText>No tienes cuenta? <Link to={"/register"}>Registrate</Link></RegisterText>
                 

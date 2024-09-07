@@ -55,7 +55,7 @@ export default function HeaderMenu({setMenuOpen}){
                     <li><Link to={"/recovery"}><MenuButton onClick={()=> setMenuOpen(false)}>Recuperar Contraseña</MenuButton></Link></li>
                     <li><Link to={"/dashboard"}><MenuButton onClick={()=> setMenuOpen(false)}>Ventas</MenuButton></Link></li>                    
                     <li><Link to={"/profile"}><MenuButton onClick={()=> setMenuOpen(false)}>Perfil</MenuButton></Link></li>   
-                    <li><Link to={"/talento-humano"}><MenuButton onClick={()=> setMenuOpen(false)}>Talento Humano</MenuButton></Link></li> 
+                    <li><Link to={"/products"}><MenuButton onClick={()=> setMenuOpen(false)}>Productos</MenuButton></Link></li> 
             </MenuList>
         </MenuDiv>
     )

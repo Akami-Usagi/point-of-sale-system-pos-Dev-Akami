@@ -13,6 +13,7 @@ const CardDiv = styled.div`
     align-items: center;
     flex-direction: column;
     color: #7a7b83;
+    cursor: pointer;
     
 `
 const ProductDiv = styled.div`

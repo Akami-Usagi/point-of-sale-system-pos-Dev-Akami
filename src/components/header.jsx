@@ -53,6 +53,7 @@ const NavButton = styled.button`
     background-color: #ffffff;
     transition: ease-in-out 200ms;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    cursor: pointer;
     &:hover{
         background-color: red;
         font-weight: 600;
@@ -87,7 +88,7 @@ export default function Header(){
                         <li><Link to={"/recovery"}><NavButton>Recuperar Contraseña</NavButton></Link></li>
                         <li><Link to={"/dashboard"}><NavButton>Ventas</NavButton></Link></li>
                         <li><Link to={"/profile"}><NavButton>Perfil</NavButton></Link></li>
-                        <li><Link to={"/talento-humano"}><NavButton>Talento Humano</NavButton></Link></li>
+                        <li><Link to={"/products"}><NavButton>Productos</NavButton></Link></li>
                     </NavList>
                 </nav>
             </HeaderDiv>

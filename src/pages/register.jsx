@@ -71,7 +71,7 @@ export default function Register(){
     return(
         <RegisterPage>
             
-            <Title>Complete el formulario de registro</Title>
+            <Title>Completa el formulario de registro</Title>
             <FormDiv>
                 <Label htmlFor="name">Nombre</Label>
                 <Input type="text" placeholder="Ingrese su Nombre"/>

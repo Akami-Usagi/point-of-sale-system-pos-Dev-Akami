@@ -15,6 +15,7 @@ const CardDiv= styled.div`
     align-items: center;
     color: #626573;
     transition: 200ms ease-in-out;
+    cursor: pointer;
     &:hover{
         outline: 5px solid gray;
     }

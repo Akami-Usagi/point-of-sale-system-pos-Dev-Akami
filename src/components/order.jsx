@@ -29,6 +29,7 @@ const Box = styled.div`
     display: grid;
     place-items: center;
     color: white;
+    cursor: pointer;
 `
 const DescriptionDiv = styled.div`
     display: flex;

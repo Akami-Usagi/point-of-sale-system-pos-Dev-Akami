@@ -4,6 +4,7 @@ import Header from "./components/header";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import PasswordRecovery from "./pages/passwordRecovery";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/recovery" element={<PasswordRecovery/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
 
       </Routes>
     </Router>

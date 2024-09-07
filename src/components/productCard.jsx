@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { backgroundColor } from "../styles";
 
 const CardDiv = styled.div`
-    background-color: #15171C;
+    background-color: white;
     width: 270px;
     height: 320px;
     border-radius: 15px;
-    outline: 1px solid #1d2027;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #B5B7C3;
+    color: #7a7b83;
 `
 const ProductDiv = styled.div`
     width: 190px;
@@ -42,7 +43,7 @@ export default function ProductCard(){
     return(
         <CardDiv>
             <ProductDiv>
-                <ProductPic src="images/bread_pic.webp" alt="picture" />   
+                <ProductPic src="images/placeholder_item.webp" alt="picture" />   
             </ProductDiv>
             <Title>Placeholder Item</Title>
             <Description>Item Description</Description>

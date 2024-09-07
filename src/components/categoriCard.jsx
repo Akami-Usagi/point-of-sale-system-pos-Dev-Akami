@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { RiBreadFill } from "react-icons/ri";
+import { BiSolidCategory } from "react-icons/bi";
+import { backgroundColor } from "../styles";
 
 const CardDiv= styled.div`
     width: 135px;
     height: 180px;
     border-radius: 15px;
-    outline: 3px solid #363843;
+    background-color: ${backgroundColor};
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,10 +16,10 @@ const CardDiv= styled.div`
     color: #626573;
     transition: 200ms ease-in-out;
     &:hover{
-        outline: 2px solid #006AE6;
+        outline: 5px solid gray;
     }
 `
-const Icon =styled(RiBreadFill)`
+const Icon =styled(BiSolidCategory)`
     color: #626573;
     width: 55px;
     height: 55px;
@@ -33,12 +35,12 @@ const Description = styled.p`
     
 `
 
-export default function CategoryCard(){
+export default function CategoryCard({nombre, cantidad}){
     return(
         <CardDiv>
             <Icon/>
-            <Title>Panaderia</Title>
-            <Description>16 Productos</Description>
+            <Title>{nombre}</Title>
+            <Description>{`${cantidad} productos`}</Description>
         </CardDiv>
     )
 }

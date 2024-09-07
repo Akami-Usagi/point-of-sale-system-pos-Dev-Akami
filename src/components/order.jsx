@@ -7,7 +7,7 @@ const OrderDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #B5B7C3;
+    color: #909192;
 `
 const ImageDiv = styled.div`
     width: 50px;
@@ -24,11 +24,11 @@ const ProductImage = styled.img`
 const Box = styled.div`
     width: 30px;
     height: 30px;
-    outline: 1px solid #1d2027;
-    background-color: #212227;
+    background-color: gray;
     border-radius: 5px;
     display: grid;
     place-items: center;
+    color: white;
 `
 const DescriptionDiv = styled.div`
     display: flex;
@@ -45,7 +45,7 @@ export default function Order(){
         <OrderDiv>
             <DescriptionDiv>
                 <ImageDiv>
-                    <ProductImage src="images/bread_pic.webp" alt="product" />     
+                    <ProductImage src="images/placeholder_item.webp" alt="product" />     
                 </ImageDiv>
                 <h4>Placeholder Item</h4>
             </DescriptionDiv>

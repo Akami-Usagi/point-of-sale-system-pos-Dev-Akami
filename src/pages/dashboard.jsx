@@ -7,9 +7,10 @@ import Order from "../components/order";
 const MainDiv = styled.div`
     position: absolute;
     top: 112px;
-    left: 320px;
-    width: 82%;
+    left: 100px;
+    width: 60%;
     display: flex;
+    
 `
 const ContentDiv = styled.div`
     
@@ -18,6 +19,8 @@ const CategoryDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    position: relative;
+    left: 30px;
 `
 const ProductDiv = styled.div`
     display: flex;
@@ -27,20 +30,23 @@ const ProductDiv = styled.div`
     margin-bottom: 30px;
 `
 const OrderDiv = styled.div`
-    width: 800px;
+    width: 400px;
     height: 700px;
-    background-color: #15171C;
-    position: sticky;
-    outline: 1px solid #1d2027;
+    background-color: white;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
     border-radius: 15px;
     padding: 20px;
-    color: #B5B7C3;
+    color: #a1a1a1;
 `
 const PriceDiv = styled.div`
     background-color: #00A261;
     width: 100%;
     height: 150px;
     border-radius: 15px;
+    margin-top: 30px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -67,16 +73,43 @@ const PayDiv = styled.div`
     margin-top: 30px;
 `
 
-export default function Main(){
+export default function Dashboard(){
+
+
+    const categorias = [
+        {
+            nombre: "Peluches",
+            cantidad: 10
+        },
+        {
+            nombre: "Decoraciones",
+            cantidad: 7
+        },
+        {
+            nombre: "Arreglos",
+            cantidad: 18
+        },
+        {
+            nombre: "Promociones",
+            cantidad: 9
+        },
+        {
+            nombre: "Importados",
+            cantidad: 21
+        },
+    ]
+
+   
+
     return(
         <MainDiv>
             <ContentDiv>
                 <CategoryDiv>  
-                    <CategoryCard/>
-                    <CategoryCard/>
-                    <CategoryCard/>
-                    <CategoryCard/>
-                    <CategoryCard/>
+                    {categorias.map((categoria) => {
+                        return(
+                            <CategoryCard nombre={categoria.nombre} cantidad={categoria.cantidad}/>
+                        )
+                    })}
                 </CategoryDiv>
                 <ProductDiv>
                     <ProductCard/>

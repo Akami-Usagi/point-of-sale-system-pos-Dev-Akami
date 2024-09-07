@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const StyledHeader = styled.header`
     width: 100%;
     height: fit-content;
-    
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -20,6 +19,7 @@ const HeaderDiv = styled.div`
     align-items: center;
     justify-content: center;
     position: fixed;
+    z-index: 9999;
     @media (max-width: 1270px){
         justify-content: center;
     }
@@ -85,7 +85,7 @@ export default function Header(){
                         <li><Link to={"/"}><NavButton>Login</NavButton></Link></li>
                         <li><Link to={"/register"}><NavButton>Registrarse</NavButton></Link></li>
                         <li><Link to={"/recovery"}><NavButton>Recuperar Contraseña</NavButton></Link></li>
-                        <li><Link to={"/inscripciones"}><NavButton>Inscribete</NavButton></Link></li>
+                        <li><Link to={"/dashboard"}><NavButton>Dashboard</NavButton></Link></li>
                         <li><Link to={"/centros-transformacion-digital"}><NavButton>CTD</NavButton></Link></li>
                         <li><Link to={"/talento-humano"}><NavButton>Talento Humano</NavButton></Link></li>
                     </NavList>

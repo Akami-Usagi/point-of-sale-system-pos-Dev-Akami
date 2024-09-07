@@ -7,8 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
     min-height: 100vh;
+    
     background: url("/public/images/background.webp") no-repeat center;
     background-size: cover;
+    background-attachment: fixed;
   
 }
 

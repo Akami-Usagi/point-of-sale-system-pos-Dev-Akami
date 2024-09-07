@@ -1,160 +1,99 @@
 import React from "react";
 import styled from "styled-components";
+import HeaderMenu from "./headerMenu";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MdSpaceDashboard } from "react-icons/md";
-import { MdPointOfSale } from "react-icons/md";
-import { MdShoppingCart } from "react-icons/md";
-import { MdFileOpen } from "react-icons/md";
-import { MdApps } from "react-icons/md";
-import { MdNotificationAdd } from "react-icons/md";
-import TransactionCard from "./transactionCard";
 
-const NavDiv = styled.div`
-    display: flex;
-    flex-direction: column-reverse;
-    position: fixed;
+const StyledHeader = styled.header`
     width: 100%;
-    z-index: 1;
-    
-    
-`
-const Sidebar = styled.aside`
-    background-color: #15171C;
-    width: 250px;
-    height: 80vh;
-    margin-left: 30px;
-    margin-top: 30px;
-    border-radius: 15px;
-    outline: 1px solid #1d2027;
+    height: fit-content;
+    padding: 15px 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    
 `
-const CatLogo = styled.img`
-    margin-top: 20px;
-    width: 80px;
-    text-align: center;
-`
-const List = styled.ul`
-    list-style: none;
-    margin-top: 50px;
-
-`
-const ListLink = styled(Link)`
-    text-decoration: none;
-    position: relative;
-    right: 30px;
-    gap: 20px;
-    color: #626573;
-    font-weight: bold;
-    font-size: 1.5rem;
+const HeaderDiv = styled.div`
+    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    transition: 200ms ease-in-out;
-    &:hover{
-        color: #006AE6;
+    justify-content: center;
+    padding: 0 3%;
+    position: fixed;
+    @media (max-width: 1270px){
+        justify-content: center;
+    }
+    @media (max-width: 600px){
+        justify-content: space-between;
     }
 `
-const ListItem = styled.li`
-    margin-bottom: 30px;
-`
-const Navbar = styled.header`
-    width: 100%;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 0 #1d2027;
-    background-color: #0F1014;
-    
-`
-const NavLogo = styled.img`
-    width: 150px;
-    
-`
-const NavLogoDiv = styled.div`
-    
-    width: 150px;
-    padding: 0 70px;
-    box-shadow: 2px 0 0 #1d2027;
-`
-const LeftBar = styled.div`
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-`
-const TransactionDiv = styled.div`
-    display: flex;
-    margin-left: 20px;
-`
-const RightBar = styled.div`
-    display: flex;
-    gap: 20px;
-    margin-right: 30px;
-`
-const ConfigDiv = styled.div`
+
+const NavList = styled.ul`
+    list-style: none;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: #15171C;
-    border-radius: 10px;
-    outline: 1px solid #1d2027;
-    overflow: hidden;
+    
+   
+    @media (max-width: 1000px){
+        display: none;
+    }
+    
 `
-const ProfilePic = styled.img`
-    width: 40px;
+const NavButton = styled.button`
+    width: 150px;
+    height: 50px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    border: none;
+    border-radius: 30px;
+    background-color: #ffffff;
+    transition: ease-in-out 200ms;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    &:hover{
+        background-color: red;
+        font-weight: 600;
+        width: 170px;
+        color: white;
+    }
 `
-const Apps = styled(MdApps)`
-    color: #626573;
-    width: 22px;
-    height: 22px;
-`
-const Notifications = styled(MdNotificationAdd)`
-    color: #626573;
-    width: 22px;
-    height: 22px;
-`
+const MenuImage = styled.img`
+        width: 50px;
+        display: none;
+        transition: ease-in-out 200ms;
+        @media (max-width: 1000px){
+            display: block;
+            position: absolute;
+            right: 30px;
+            top: 30px;
+        }
+    `
+export default function Header(){
 
-export default function Header (){
+    
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return(
-        <NavDiv>
-            <Sidebar>
-                <CatLogo src="images/cat_logo.svg" alt="Logo" />
-                <List>
-                    <ListItem><ListLink to={"/"}><MdSpaceDashboard/> Dashboard</ListLink></ListItem>
-                    <ListItem><ListLink to={"/caja"}><MdPointOfSale/> Caja</ListLink></ListItem>
-                    <ListItem><ListLink to={"/productos"}><MdShoppingCart/> Productos</ListLink></ListItem>
-                    <ListItem><ListLink to={"/facturas"}><MdFileOpen /> Facturas</ListLink></ListItem>
-                </List>
-            </Sidebar>
-            <Navbar>
-                <LeftBar>
-                    <NavLogoDiv>
-                        <NavLogo src="images/panaderia_logo.svg" alt="Panaderia" />
-                    </NavLogoDiv>
-                    <TransactionDiv>
-                        <TransactionCard color={"#00A261"} text={"Ingresos"} value={"$57.000"}/>
-                        <TransactionCard color={"#E42855"} text={"Egresos"} value={"$21.000"}/>
-                        <TransactionCard color={"#006AE6"} text={"Total"} value={"$36.000"}/>   
-                    </TransactionDiv>
-                    
-                </LeftBar>
-                <RightBar>
-                    <ConfigDiv>
-                        <Apps/>
-                    </ConfigDiv>
-                    <ConfigDiv>
-                        <Notifications/>
-                    </ConfigDiv>
-                    <ConfigDiv>
-                        <ProfilePic src="images/profile_pic.jpg" alt="profile" />
-                    </ConfigDiv>
-                </RightBar>
+        <StyledHeader>
+            <HeaderDiv>
                 
-            </Navbar>
-        </NavDiv>
-    );
-};
+                <nav>
+                    <NavList>
+                        <li><Link to={"/"}><NavButton>Login</NavButton></Link></li>
+                        <li><Link to={"/buga-avanza"}><NavButton>Buga Avanza</NavButton></Link></li>
+                        <li><Link to={"/aula-virtual"}><NavButton>Aula Virtual</NavButton></Link></li>
+                        <li><Link to={"/inscripciones"}><NavButton>Inscribete</NavButton></Link></li>
+                        <li><Link to={"/centros-transformacion-digital"}><NavButton>CTD</NavButton></Link></li>
+                        <li><Link to={"/talento-humano"}><NavButton>Talento Humano</NavButton></Link></li>
+                    </NavList>
+                </nav>
+            </HeaderDiv>
+            {menuOpen ? <MenuImage src="/images/menu_open.svg" onClick={()=> setMenuOpen(!menuOpen)}/> : <MenuImage src="/images/menu_closed.svg" onClick={()=> setMenuOpen(!menuOpen)}/>}
+            {menuOpen && <HeaderMenu setMenuOpen={setMenuOpen}/>}
+        </StyledHeader>
+    )
+}

@@ -7,7 +7,7 @@ import Login from "./pages/login";
 function App() {
   return (
     <Router>
-      
+      <Header/>
       <Routes>
         <Route path="/" element={<Login/>}/>
       </Routes>

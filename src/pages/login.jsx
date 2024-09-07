@@ -5,7 +5,9 @@ import { backgroundColor } from "../styles";
 const LoginPage = styled.div`
     width: 100%;
     min-height: 100vh;
-    background-color: ${backgroundColor};
+    background: url("/images/akemi.png") no-repeat center;
+    background-size: cover;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +22,9 @@ const FormDiv = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
+    @media (max-width: 600px){
+        width: 80%;
+    }
 `
 const Label = styled.label`
     color: gray;
@@ -37,6 +42,7 @@ const Input = styled.input`
     font-size: large;
     margin-bottom: 30px;
     outline: none;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
 `
 const Button = styled.button`
     width: 250px;
@@ -59,9 +65,12 @@ const Button = styled.button`
 const Logo = styled.img`
     width: 450px;
     margin-bottom: 30px;
+    @media (max-width: 500px){
+        width: 80%;
+    }
 `
 const Title = styled.h1`
-    color: gray;
+    font-size: large;
 `
 
 export default function Login(){

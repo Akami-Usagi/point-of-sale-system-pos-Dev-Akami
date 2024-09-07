@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CategoryCard from "../components/categoriCard";
 import ProductCard from "../components/productCard";
 import { FaPlusCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const MainDiv = styled.div`
@@ -49,6 +50,9 @@ const Plus = styled(FaPlusCircle)`
         color: red;
     }
 `
+const ProductLink = styled(Link)`
+    text-decoration: none;
+`
 
 export default function Products(){
 
@@ -89,20 +93,23 @@ export default function Products(){
                     })}
                 </CategoryDiv>
                 <ProductDiv>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                    
+                    
                     
                 </ProductDiv>
             </ContentDiv>
-            <Plus title="Agregar Producto"/>
+            <ProductLink to={"/products/new-product"}><Plus title="Agregar Producto"/></ProductLink>
+            
         </MainDiv>
         
         

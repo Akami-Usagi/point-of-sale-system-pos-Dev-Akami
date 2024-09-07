@@ -7,6 +7,8 @@ import PasswordRecovery from "./pages/passwordRecovery";
 import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
 import Products from "./pages/products";
+import ProductDetails from "./pages/productDetails";
+import NewProduct from "./pages/newProduct";
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/products" element={<Products/>}/>
+        <Route path="/products/details" element={<ProductDetails/>}/>
+        <Route path="/products/new-product" element={<NewProduct/>}/>
+
 
       </Routes>
     </Router>

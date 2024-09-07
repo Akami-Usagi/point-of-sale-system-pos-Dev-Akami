@@ -85,8 +85,8 @@ export default function Header(){
                         <li><Link to={"/"}><NavButton>Login</NavButton></Link></li>
                         <li><Link to={"/register"}><NavButton>Registrarse</NavButton></Link></li>
                         <li><Link to={"/recovery"}><NavButton>Recuperar Contraseña</NavButton></Link></li>
-                        <li><Link to={"/dashboard"}><NavButton>Dashboard</NavButton></Link></li>
-                        <li><Link to={"/centros-transformacion-digital"}><NavButton>CTD</NavButton></Link></li>
+                        <li><Link to={"/dashboard"}><NavButton>Ventas</NavButton></Link></li>
+                        <li><Link to={"/profile"}><NavButton>Perfil</NavButton></Link></li>
                         <li><Link to={"/talento-humano"}><NavButton>Talento Humano</NavButton></Link></li>
                     </NavList>
                 </nav>

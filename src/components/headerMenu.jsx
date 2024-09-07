@@ -53,8 +53,8 @@ export default function HeaderMenu({setMenuOpen}){
                     <li><Link to={"/"}><MenuButton onClick={()=> setMenuOpen(false)}>Inicio</MenuButton></Link></li>
                     <li><Link to={"/register"}><MenuButton onClick={()=> setMenuOpen(false)}>Registrarse</MenuButton></Link></li>    
                     <li><Link to={"/recovery"}><MenuButton onClick={()=> setMenuOpen(false)}>Recuperar Contraseña</MenuButton></Link></li>
-                    <li><Link to={"/dashboard"}><MenuButton onClick={()=> setMenuOpen(false)}>Dashboard</MenuButton></Link></li>                    
-                    <li><Link to={"/centros-transformacion-digital"}><MenuButton onClick={()=> setMenuOpen(false)}>CTD</MenuButton></Link></li>   
+                    <li><Link to={"/dashboard"}><MenuButton onClick={()=> setMenuOpen(false)}>Ventas</MenuButton></Link></li>                    
+                    <li><Link to={"/profile"}><MenuButton onClick={()=> setMenuOpen(false)}>Perfil</MenuButton></Link></li>   
                     <li><Link to={"/talento-humano"}><MenuButton onClick={()=> setMenuOpen(false)}>Talento Humano</MenuButton></Link></li> 
             </MenuList>
         </MenuDiv>

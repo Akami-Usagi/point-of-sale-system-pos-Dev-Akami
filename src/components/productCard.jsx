@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { backgroundColor } from "../styles";
+
 
 const CardDiv = styled.div`
     background-color: white;
@@ -13,6 +13,7 @@ const CardDiv = styled.div`
     align-items: center;
     flex-direction: column;
     color: #7a7b83;
+    
 `
 const ProductDiv = styled.div`
     width: 190px;

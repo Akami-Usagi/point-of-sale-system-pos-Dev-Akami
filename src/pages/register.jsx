@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { backgroundColor } from "../styles";
-import { Link } from "react-router-dom";
 
-const LoginPage = styled.div`
+const RegisterPage = styled.div`
     width: 100%;
-    min-height: 100vh;    
+    min-height: 100vh;
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,6 +30,7 @@ const Label = styled.label`
     margin-bottom: 10px;
     position: relative;
     left: 10px;
+    font-size: medium;
 `
 const Input = styled.input`
     height: 40px;
@@ -38,7 +39,7 @@ const Input = styled.input`
     border-radius: 15px;
     padding: 10px;
     font-size: large;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     outline: none;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
 `
@@ -54,46 +55,42 @@ const Button = styled.button`
     font-weight: 600;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
     transition: 300ms ease-in-out;
+    margin-top: 20px;
     &:hover{
         background-color: white;
         color: gray;
         cursor: pointer;
     }
 `
-const Logo = styled.img`
-    width: 450px;
-    margin-bottom: 30px;
-    @media (max-width: 500px){
-        width: 80%;
-    }
-`
+
 const Title = styled.h1`
     font-size: x-large;
 `
-const ForgotText = styled.p`
-    align-self: flex-end;
-    margin-top: -20px;
-    margin-bottom: 40px;
-`
-const RegisterText = styled.p`
-    align-self: center;
-`
 
-export default function Login(){
+export default function Register(){
     return(
-        <LoginPage>
-            <Logo src="/images/main_logo.svg" alt="Logo" />
-            <Title>INICIAR SESION</Title>
+        <RegisterPage>
+            
+            <Title>Complete el formulario de registro</Title>
             <FormDiv>
-                <Label htmlFor="username">Usuario</Label>
-                <Input type="text" placeholder="Ingrese su Usuario"/>
-                <Label htmlFor="username">Contraseña</Label>
-                <Input type="text" placeholder="Ingrese su Contraseña"/>
-                <ForgotText>Olvido la contraseña? <Link to={"/register"}>Restablecer contraseña</Link></ForgotText>
-                <Button>Iniciar Sesion</Button>
-                <RegisterText>No tienes cuenta? <Link to={"/register"}>Registrate</Link></RegisterText>
+                <Label htmlFor="name">Nombre</Label>
+                <Input type="text" placeholder="Ingrese su Nombre"/>
+                <Label htmlFor="documento">Documento</Label>
+                <Input type="number" placeholder="Ingrese su numero de documento"/>
                 
+                <Label htmlFor="phone">Telefono</Label>
+                <Input type="number" placeholder="Ingrese su Telefono"/>
+                <Label htmlFor="email">Correo Electronico</Label>
+                <Input type="email" placeholder="Ingrese su Email"/>
+                
+                <Label htmlFor="confirmEmail">Confirmar Correo Electronico</Label>
+                <Input type="text" placeholder="Confirme su Email"/>
+                <Label htmlFor="password">Contraseña</Label>
+                <Input type="password" placeholder="Ingrese su Contraseña"/>
+                <Label htmlFor="confirmPassword">Confirmar Contraseña</Label>
+                <Input type="password" placeholder="Confirme su Contraseña"/>
+                <Button>Registrarse</Button>
             </FormDiv>
-        </LoginPage>
+        </RegisterPage>
     )
 }

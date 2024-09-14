@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { backgroundColor } from "../styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/sidebar";
 
 const ProfilePage = styled.div`
     width: 100%;

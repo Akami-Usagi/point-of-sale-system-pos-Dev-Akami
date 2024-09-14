@@ -18,8 +18,6 @@ const HeaderDiv = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    z-index: 9999;
     @media (max-width: 1270px){
         justify-content: center;
     }

@@ -3,13 +3,14 @@ import styled from "styled-components";
 import CategoryCard from "../components/categoriCard";
 import ProductCard from "../components/productCard";
 import Order from "../components/order";
+import Sidebar from "../components/sidebar";
 
 const MainDiv = styled.div`
-    position: absolute;
-    top: 112px;
-    left: 100px;
-    width: 60%;
+    margin: 50px;
+    width: 70%;
+    column-gap: 10px;
     display: flex;
+    
     
 `
 const ContentDiv = styled.div`
@@ -104,6 +105,7 @@ export default function Dashboard(){
 
     return(
         <MainDiv>
+            <Sidebar/>
             <ContentDiv>
                 <CategoryDiv>  
                     {categorias.map((categoria) => {

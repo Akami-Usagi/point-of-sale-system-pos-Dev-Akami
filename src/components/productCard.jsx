@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const CardDiv = styled.div`
     background-color: white;
-    width: 270px;
-    height: 320px;
+    width: 200px;
+    height: 280px;
     border-radius: 15px;
     box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     display: flex;
@@ -17,11 +17,16 @@ const CardDiv = styled.div`
     
 `
 const ProductDiv = styled.div`
-    width: 190px;
-    height: 190px;
+    width: 120px;
+    height: 120px;
     background-color: white;
     border-radius: 15px;
     overflow: hidden;
+    transition: 300ms ease-in-out;
+    &:hover{
+        width: 150px;
+        height: 150px;
+    }
 `
 const ProductPic = styled.img`
     width: 100%;

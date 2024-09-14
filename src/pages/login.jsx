@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { backgroundColor } from "../styles";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = styled.div`
     width: 100%;
@@ -12,14 +13,14 @@ const LoginPage = styled.div`
     align-items: center;
 `
 const FormDiv = styled.div`
-    width: 500px;
+    width: 400px;
     height: fit-content;
     background-color: white;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 60px 30px 20px 30px;
     @media (max-width: 600px){
         width: 80%;
     }
@@ -62,14 +63,15 @@ const Button = styled.button`
     }
 `
 const Logo = styled.img`
-    width: 450px;
-    margin-bottom: 30px;
+    width: 350px;
+    margin-bottom: 10px;
     @media (max-width: 500px){
         width: 80%;
     }
 `
 const Title = styled.h1`
     font-size: x-large;
+    margin-bottom: 30px;
 `
 const ForgotText = styled.p`
     align-self: flex-end;
@@ -81,6 +83,12 @@ const RegisterText = styled.p`
 `
 
 export default function Login(){
+
+    const navigate = useNavigate();
+    function handleNavigate (){
+        navigate("/dashboard")
+    }
+
     return(
         <LoginPage>
             <Logo src="/images/main_logo.svg" alt="Logo" />
@@ -91,9 +99,8 @@ export default function Login(){
                 <Label htmlFor="username">Contraseña</Label>
                 <Input type="text" placeholder="Ingrese su Contraseña"/>
                 <ForgotText>Olvido la contraseña? <Link to={"/recovery"}>Restablecer contraseña</Link></ForgotText>
-                <Button>Iniciar Sesion</Button>
+                <Button onClick={handleNavigate}>Iniciar Sesion</Button>
                 <RegisterText>No tienes cuenta? <Link to={"/register"}>Registrate</Link></RegisterText>
-                
             </FormDiv>
         </LoginPage>
     )

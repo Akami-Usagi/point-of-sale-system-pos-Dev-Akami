@@ -5,8 +5,9 @@ import ProductCard from "../components/productCard";
 import Order from "../components/order";
 import Sidebar from "../components/sidebar";
 
+
 const MainDiv = styled.div`
-    margin: 50px;
+    margin: 50px 40px;
     width: 70%;
     column-gap: 10px;
     display: flex;
@@ -14,14 +15,13 @@ const MainDiv = styled.div`
     
 `
 const ContentDiv = styled.div`
-    
+    margin-left: 30px;
 `
 const CategoryDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    position: relative;
-    left: 30px;
+    
 `
 const ProductDiv = styled.div`
     display: flex;
@@ -105,8 +105,10 @@ export default function Dashboard(){
 
     return(
         <MainDiv>
+            
             <Sidebar/>
             <ContentDiv>
+                
                 <CategoryDiv>  
                     {categorias.map((categoria) => {
                         return(

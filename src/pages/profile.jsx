@@ -5,19 +5,17 @@ import { backgroundColor } from "../styles";
 const ProfilePage = styled.div`
     width: 100%;
     min-height: 100vh;
-    margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 120px;
 `
 const FormDiv = styled.div`
-    width: 500px;
+    width: 400px;
     height: fit-content;
     background-color: white;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
-    border-radius: 15px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     padding: 30px;
@@ -34,17 +32,16 @@ const Label = styled.label`
     font-size: medium;
 `
 const Text = styled.textarea`
-    height: 40px;
+    height: 25px;
     border: none;
     background-color: ${backgroundColor};
     border-radius: 15px;
     padding: 10px;
-    font-size: large;
     margin-bottom: 10px;
     outline: none;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
     text-align: center;
-    font-size: x-large;
+    font-size: large;
     font-family: sans-serif;
     padding-top: 20px;
     color: #525252;
@@ -71,7 +68,7 @@ const Button = styled.button`
     }
 `
 const ProfilePic = styled.img`
-    width: 300px;
+    width: 200px;
     align-self: center;
     border-radius: 100%;
     margin-bottom: 20px;

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from "./components/header";
+import AppHeader from "./components/appHeader";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import PasswordRecovery from "./pages/passwordRecovery";
@@ -13,7 +13,7 @@ import NewProduct from "./pages/newProduct";
 function App() {
   return (
     <Router>
-      <Header/>
+      <AppHeader/>
       <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>

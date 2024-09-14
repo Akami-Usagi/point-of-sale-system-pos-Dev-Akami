@@ -9,8 +9,8 @@ const LoginPage = styled.div`
     min-height: 100vh;    
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    margin-top: 50px;
 `
 const FormDiv = styled.div`
     width: 400px;

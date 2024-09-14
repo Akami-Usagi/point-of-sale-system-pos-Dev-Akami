@@ -8,12 +8,10 @@ const ProfilePage = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
 `
 const FormDiv = styled.div`
-    width: 500px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    width: 400px;
+    margin: 40px;
     height: fit-content;
     background-color: white;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
@@ -34,16 +32,15 @@ const Label = styled.label`
     font-size: medium;
 `
 const Text = styled.textarea`
-    height: 40px;
+    height: 30px;
     border: none;
     background-color: ${backgroundColor};
     border-radius: 15px;
     padding: 10px;
-    font-size: large;
     margin-bottom: 10px;
     outline: none;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
-    font-size: x-large;
+    font-size: large;
     font-family: sans-serif;
     padding-top: 20px;
     color: #525252;
@@ -54,11 +51,10 @@ const ItemDescription = styled.div`
     background-color: ${backgroundColor};
     border-radius: 15px;
     padding: 10px;
-    font-size: large;
     margin-bottom: 10px;
     outline: none;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
-    font-size: x-large;
+    font-size: large;
     font-family: sans-serif;
     padding-top: 20px;
     color: #525252;  
@@ -96,6 +92,10 @@ export default function ProductDetails(){
 
     const lorenIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
+    function handleEdit(){
+        alert("Not implemented yet")
+    }
+
     return(
         <ProfilePage>
             <FormDiv>
@@ -113,7 +113,7 @@ export default function ProductDetails(){
                 <Label htmlFor="stock">Cantidad en Stock</Label>
                 <Text type="number" value={35} disabled/>
                 
-                <Button>Editar Producto</Button>
+                <Button onClick={handleEdit}>Editar Producto</Button>
             </FormDiv>
         </ProfilePage>
     )

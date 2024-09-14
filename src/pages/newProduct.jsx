@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { backgroundColor } from "../styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/sidebar";
 
 const ProfilePage = styled.div`
     width: 100%;
@@ -11,11 +12,11 @@ const ProfilePage = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 120px;
+    
 `
 const FormDiv = styled.div`
-    width: 500px;
-    margin-top: -100px;
+    width: 400px;
+    margin-top: 30px;
     height: fit-content;
     background-color: white;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
@@ -36,19 +37,19 @@ const Label = styled.label`
     font-size: medium;
 `
 const Text = styled.textarea`
-    height: 40px;
+    height: 30px;
     border: none;
     background-color: ${backgroundColor};
     border-radius: 15px;
     padding: 10px;
-    font-size: large;
     margin-bottom: 10px;
     outline: none;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
-    font-size: x-large;
+    font-size: large;
     font-family: sans-serif;
     padding-top: 20px;
     color: #525252;
+    resize: none;
     
     
 `
@@ -109,6 +110,7 @@ export default function NewProduct(){
 
     return(
         <ProfilePage>
+            
             <FormDiv>
                 <ProfilePicDiv>
                     <ProfilePic src={file} alt="Profile Pic" />

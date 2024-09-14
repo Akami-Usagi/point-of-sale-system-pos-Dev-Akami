@@ -93,7 +93,7 @@ export default function Profile(){
                 <Label htmlFor="email">Correo Electronico</Label>
                 <Text type="email" value={"akami.3ds@gmail.com"} disabled/>
                 
-                <Button>Editar Informacion</Button>
+                <Button onClick={() => alert("not implemented yet")}>Editar Informacion</Button>
             </FormDiv>
         </ProfilePage>
     )

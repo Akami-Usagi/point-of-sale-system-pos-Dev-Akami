@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { IoIosNotifications } from "react-icons/io";
 import { FaGear } from "react-icons/fa6";
 import { backgroundColor } from "../styles";
+import { useNavigate } from "react-router-dom";
 
 const HeaderDiv = styled.div`
     max-width: 100%;
@@ -16,6 +17,7 @@ const HeaderDiv = styled.div`
 `
 const SidebarLogo = styled.img`
     width: 130px;
+    cursor: pointer;
 `
 const NavContent = styled.div`
     height: 70px;
@@ -29,6 +31,7 @@ const ProfilePic = styled.img`
     align-self: center;
     border-radius: 100%;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    cursor: pointer;
 `
 const NavButton = styled.div`
     display: grid;
@@ -40,16 +43,26 @@ const NavButton = styled.div`
     border-radius: 100%;
     background-color: ${backgroundColor};
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    cursor: pointer;
 `
 
 export default function AppHeader(){
+
+    const navigate = useNavigate();
+    function handleNavigate (){
+        navigate("/")
+    }
+    function gotoProfile(){
+        navigate("/profile")
+    }
+
     return(
         <HeaderDiv>
-            <SidebarLogo src="/images/main_logo.svg" alt="Logo"/>
+            <SidebarLogo src="/images/main_logo.svg" alt="Logo" onClick={handleNavigate}/>
             <NavContent>
-                <NavButton><IoIosNotifications /></NavButton>
-                <NavButton><FaGear /></NavButton>
-                <ProfilePic src="/images/profile_pic.jpg" alt="Profile Pic" />
+                <NavButton onClick={() => alert("not implemented yet")}><IoIosNotifications /></NavButton>
+                <NavButton onClick={() => alert("not implemented yet")}><FaGear /></NavButton>
+                <ProfilePic src="/images/profile_pic.jpg" alt="Profile Pic" onClick={gotoProfile}/>
             </NavContent>
         </HeaderDiv>
     )

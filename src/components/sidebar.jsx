@@ -4,6 +4,7 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { MdOutlinePointOfSale } from "react-icons/md";
 import { FaFileAlt } from "react-icons/fa";
 import { FaBoxesPacking } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const SidebarDiv = styled.div`
     min-width: 200px;
@@ -44,19 +45,31 @@ const LinkContainer = styled.div`
     }
 `
 export default function Sidebar(){
+
+    const navigate = useNavigate();
+    function gotoLogin (){
+        navigate("/")
+    }
+    function gotoDashboard (){
+        navigate("/dashboard")
+    }
+    function gotoProducts (){
+        navigate("/products")
+    }
+
     return(
         <SidebarDiv>
-            <SidebarLogo src="/images/main_logo.svg" alt="Logo"/>
+            <SidebarLogo src="/images/main_logo.svg" alt="Logo" onClick={gotoLogin}/>
             <NavigationDiv>
-                <LinkContainer>
+                <LinkContainer onClick={gotoDashboard}>
                     <MdSpaceDashboard />
                     <p>Dashboard</p>
                 </LinkContainer>
-                <LinkContainer>
+                <LinkContainer onClick={gotoDashboard}>
                     <MdOutlinePointOfSale />
                     <p>Ventas</p>
                 </LinkContainer>
-                <LinkContainer>
+                <LinkContainer onClick={gotoProducts}>
                     <FaBoxesPacking />
                     <p>Productos</p>
                 </LinkContainer>

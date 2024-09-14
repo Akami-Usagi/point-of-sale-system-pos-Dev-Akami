@@ -4,27 +4,25 @@ import CategoryCard from "../components/categoriCard";
 import ProductCard from "../components/productCard";
 import { FaPlusCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Sidebar from "../components/sidebar";
 
 
 const MainDiv = styled.div`
+    max-width: 100%;
     display: flex;
-    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 150px;
+    margin: 50px 40px;
+    column-gap: 10px;
     
 `
 const ContentDiv = styled.div`
     width: 80%;
+    margin-left: 30px;
 `
 const CategoryDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    position: relative;
-    left: 30px;
 `
 const ProductDiv = styled.div`
     display: flex;
@@ -84,6 +82,7 @@ export default function Products(){
 
     return(
         <MainDiv>
+            <Sidebar/>
             <ContentDiv>
                 <CategoryDiv>  
                     {categorias.map((categoria) => {

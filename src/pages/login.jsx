@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = styled.div`
-    width: 100%;
-    min-height: 100vh;    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;  
+    display: grid;
+    place-items: center;
     margin-top: 50px;
+    
 `
 const FormDiv = styled.div`
     width: 400px;
@@ -71,7 +70,7 @@ const Logo = styled.img`
 `
 const Title = styled.h1`
     font-size: x-large;
-    margin-bottom: 30px;
+    text-align: center;
 `
 const ForgotText = styled.p`
     align-self: flex-end;
@@ -92,8 +91,9 @@ export default function Login(){
     return(
         <LoginPage>
             <Logo src="/images/main_logo.svg" alt="Logo" />
-            <Title>INICIAR SESION</Title>
+            
             <FormDiv>
+            <Title>INICIAR SESION</Title>
                 <Label htmlFor="username">Usuario</Label>
                 <Input type="text" placeholder="Ingrese su Usuario"/>
                 <Label htmlFor="username">Contraseña</Label>

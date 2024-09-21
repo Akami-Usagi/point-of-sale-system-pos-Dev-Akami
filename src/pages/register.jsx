@@ -65,14 +65,16 @@ const Button = styled.button`
 
 const Title = styled.h1`
     font-size: x-large;
+    text-align: center;
 `
 
 export default function Register(){
     return(
         <RegisterPage>
             
-            <Title>Completa el formulario de registro</Title>
+            
             <FormDiv>
+            <Title>Completa el formulario de registro</Title>
                 <Label htmlFor="name">Nombre</Label>
                 <Input type="text" placeholder="Ingrese su Nombre"/>
                 <Label htmlFor="documento">Documento</Label>

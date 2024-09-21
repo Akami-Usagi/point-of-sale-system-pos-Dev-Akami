@@ -122,6 +122,8 @@ export default function NewProduct(){
 
                 <Label htmlFor="name">Nombre</Label>
                 <Text type="text" />
+                <Label htmlFor="category">Categoría</Label>
+                <Text type="text" />
                 <Label htmlFor="documento">Descripcion</Label>
                 <Text type="text"/>
                 <Label htmlFor="price">Precio</Label>

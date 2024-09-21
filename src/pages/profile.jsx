@@ -4,7 +4,6 @@ import { backgroundColor } from "../styles";
 
 const ProfilePage = styled.div`
     width: 100%;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,6 +18,7 @@ const FormDiv = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
+    margin-top: 50px;
     @media (max-width: 600px){
         width: 80%;
     }

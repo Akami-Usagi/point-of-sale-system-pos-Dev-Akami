@@ -4,12 +4,10 @@ import { backgroundColor } from "../styles";
 
 
 const LoginPage = styled.div`
-    width: 100%;
-    min-height: 100vh;    
+    width: 100%;   
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
 `
 const FormDiv = styled.div`
     width: 500px;
@@ -20,6 +18,7 @@ const FormDiv = styled.div`
     display: flex;
     flex-direction: column;
     padding: 30px;
+    margin-top: 100px;
     @media (max-width: 600px){
         width: 80%;
     }
@@ -65,6 +64,7 @@ const Button = styled.button`
 
 const Title = styled.h1`
     font-size: x-large;
+    text-align: center;
 `
 
 
@@ -72,8 +72,9 @@ export default function PasswordRecovery(){
     return(
         <LoginPage>
             
-            <Title>Recuperar Contraseña</Title>
+            
             <FormDiv>
+            <Title>Recuperar Contraseña</Title>
                 <Label htmlFor="document">Documento</Label>
                 <Input type="text" placeholder="Ingrese su numedo de documento"/>
                 <Label htmlFor="email">Email</Label>

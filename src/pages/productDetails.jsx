@@ -104,6 +104,8 @@ export default function ProductDetails(){
 
                 <Label htmlFor="name">Nombre</Label>
                 <Text type="text" value={"Placeholder Item"} disabled/>
+                <Label htmlFor="category">Categoría</Label>
+                <Text type="text" value={"Placeholder Category"} disabled/>
                 <Label htmlFor="id">Codigo</Label>
                 <Text type="number" value={"001"} disabled/>
                 <Label htmlFor="price">Precio</Label>

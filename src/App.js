@@ -10,6 +10,7 @@ import Products from "./pages/products";
 import ProductDetails from "./pages/productDetails";
 import NewProduct from "./pages/newProduct";
 import Tester from "./pages/tester";
+import AddProductForm from "./components/addProductForm";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/products/details" element={<ProductDetails/>}/>
         <Route path="/products/new-product" element={<NewProduct/>}/>
         <Route path="/tester" element={<Tester/>}/>
+        <Route path="/inyector" element={<AddProductForm/>}/>
 
 
       </Routes>

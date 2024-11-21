@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api'; // Cliente Axios configurado
+import { Link } from 'react-router-dom';
 
 function Tester() {
-  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    api.get('/users')
+    api.get('/products')
       .then((response) => {
-        setUsers(response.data);
+        setProducts(response.data);
       })
       .catch((error) => {
         console.error('Error fetching users:', error);
@@ -16,12 +17,13 @@ function Tester() {
 
   return (
     <div>
-      <h1>Lista de Usuarios</h1>
+      <h1>Lista de categorias</h1>
       <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.first_name} - {user.email}</li>
+        {products.map((product) => (
+          <li key={product.id}>{product.name} - {product.description} - {product.price}</li>
         ))}
       </ul>
+      <Link to={"/inyector"}>crear producto nuevo</Link>
     </div>
   );
 }

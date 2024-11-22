@@ -10,7 +10,7 @@ import Products from "./pages/products";
 import ProductDetails from "./pages/productDetails";
 import NewProduct from "./pages/newProduct";
 import Tester from "./pages/tester";
-import AddProductForm from "./components/addProductForm";
+import AddProductForm from "./pages/addProductForm";
 
 function App() {
   return (

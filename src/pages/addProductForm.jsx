@@ -41,7 +41,7 @@ const AddProductForm = () => {
         e.preventDefault();
         try {
             
-            const response = await axios.post('http://akemi-backend.test/api/products', formData);
+            const response = await axios.post('http://akemihouse-backend.test/api/products', formData);
             alert('Datos enviados con éxito: ' + response.data.message);
             navigate("/tester")
         } catch (error) {
@@ -50,8 +50,7 @@ const AddProductForm = () => {
         }
     };
 
-    console.log(formData);
-    
+     
 
     return (
         <form onSubmit={handleSubmit}>

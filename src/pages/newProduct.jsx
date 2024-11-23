@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { backgroundColor } from "../styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
+import axios from "axios";
 
 const ProfilePage = styled.div`
     width: 100%;
@@ -100,12 +102,47 @@ export default function NewProduct(){
     const navigate = useNavigate()
     const [file, setFile] = useState("/images/add_product.webp")
 
-    function handleClick(){
-        alert("Producto Guardado.... en alguna parte")
-        navigate("/products")
-    }
+
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [stock, setStock] = useState(0);
+    const [price, setPrice] = useState(0);
+    const [category_id, setCategory_id] = useState("");
+
+    const formData = {
+        name,
+        description,
+        stock,
+        price,
+        category_id
+    };
+
+    const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    api.get('/categories')
+      .then((response) => {
+        setCategories(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching users:', error);
+      });
+  }, []);
 
     
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            
+            const response = await axios.post('http://akemihouse-backend.test/api/products', formData);
+            alert('Datos enviados con éxito: ' + response.data.message);
+            navigate("/tester")
+        } catch (error) {
+            console.error('Error al enviar los datos', error.response?.data);
+            alert('Ocurrió un error al enviar los datos.');
+        }
+    };
 
     return(
         <ProfilePage>
@@ -121,17 +158,35 @@ export default function NewProduct(){
                 }}/>
 
                 <Label htmlFor="name">Nombre</Label>
-                <Text type="text" />
-                <Label htmlFor="category">Categoría</Label>
-                <Text type="text" />
-                <Label htmlFor="documento">Descripcion</Label>
-                <Text type="text"/>
+                <Text type="text" value={name} onChange={(event)=>{
+                    setName(event.target.value)
+                }}/>
+                <Label htmlFor="description">Descripcion</Label>
+                <Text type="text" value={description} onChange={(event)=>{
+                    setDescription(event.target.value)
+                }}/>
                 <Label htmlFor="price">Precio</Label>
-                <Text type="number"/>
-                <Label htmlFor="email">Stock Inicial</Label>
-                <Text type="number"/>
+                <Text type="number" value={price} onChange={(event)=>{
+                    setPrice(event.target.value)
+                }}/>
+                <Label htmlFor="stock">Stock Inicial</Label>
+                <Text type="number" value={stock} onChange={(event)=>{
+                    setStock(event.target.value)
+                }}/>
+                <Label htmlFor="category">Categoría</Label>
+                <select name="category_id"
+                        value={category_id}
+                        onChange={(event)=>{
+                            setCategory_id(event.target.value)
+                        }}
+                        required>
+                    <option value={undefined}>Seleccione</option>
+                {categories.map((category) => (
+                    <option value={category.id} key={category.id}>{category.name}</option>
+                    ))}
+                </select>
                 
-                <Button onClick={handleClick}>Guardar Producto</Button>
+                <Button onClick={handleSubmit}>Guardar Producto</Button>
             </FormDiv>
         </ProfilePage>
     )

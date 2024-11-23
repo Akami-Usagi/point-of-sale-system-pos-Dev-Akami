@@ -153,7 +153,7 @@ export default function NewProduct(){
                 </ProfilePicDiv>
                 
 
-                <FileInput type="file" accept="image/*" webkitdirectory onChange={(event) => {
+                <FileInput type="file" accept="image/*" onChange={(event) => {
                     setFile(URL.createObjectURL(event.target.files[0]))
                 }}/>
 

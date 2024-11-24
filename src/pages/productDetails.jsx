@@ -83,12 +83,22 @@ const Button = styled.button`
         cursor: pointer;
     }
 `
-const ProfilePic = styled.img`
-    width: 300px;
+const ProfilePicDiv = styled.div`
     align-self: center;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
     border-radius: 100%;
-    margin-bottom: 20px;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+`
+const ProfilePic = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
 `
 
 
@@ -142,7 +152,9 @@ export default function ProductDetails(){
         <ProfilePage>
             <FormDiv>
 
-                <ProfilePic src={imagePath} alt="Profile Pic" />
+                <ProfilePicDiv>
+                    <ProfilePic src={imagePath} alt="Profile Pic" />
+                </ProfilePicDiv>
 
                 <Label htmlFor="name">Nombre</Label>
                 <Text type="text" value={product.name} disabled/>

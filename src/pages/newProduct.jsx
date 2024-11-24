@@ -4,7 +4,6 @@ import { backgroundColor } from "../styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import axios from "axios";
 
 const ProfilePage = styled.div`
     width: 100%;
@@ -149,7 +148,7 @@ export default function NewProduct(){
         e.preventDefault();
         try {
             
-            const response = await axios.post("http://akemihouse-backend.test/api/products", formData, {
+            const response = await api.post("/products", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

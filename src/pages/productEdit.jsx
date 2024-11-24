@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import api from "../api";
-import axios from "axios";
 
 const ProfilePage = styled.div`
     width: 100%;
@@ -178,7 +177,7 @@ export default function ProductEdit(){
         e.preventDefault();
         try {
             
-            const response = await axios.patch(`http://akemihouse-backend.test/api/products/${product.id}`, formData);
+            const response = await api.patch(`/products/${product.id}`, formData);
             alert('Datos actualizados con éxito: ' + response.data.message);
             navigate("/products")
         } catch (error) {
@@ -233,6 +232,7 @@ export default function ProductEdit(){
                 </Select>
                 
                 <Button onClick={handleSubmit}>Guardar Producto</Button>
+                <Button onClick={handleSubmit}>Eliminar Producto</Button>
             </FormDiv>
         </ProfilePage>
     )

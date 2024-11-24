@@ -104,11 +104,6 @@ const ProfilePic = styled.img`
     object-fit: cover;
     overflow: hidden;
 `
-const FileInput = styled.input`
-    padding-bottom: 20px;
-    margin-left: 5px;
-    
-`
 
 
 

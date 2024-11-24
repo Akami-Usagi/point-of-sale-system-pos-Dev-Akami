@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { backgroundColor } from "../styles";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import api from "../api";
 
 
 const ProfilePage = styled.div`
@@ -92,6 +94,19 @@ const ProfilePic = styled.img`
 
 export default function ProductDetails({data, setData}){
 
+    const [category, setCategory] = useState([]);
+
+    useEffect(() => {
+        api.get(`/categories/${data.id}`)
+        .then((response) => {
+            setCategory(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching categories:', error);
+        });
+    }, [data.id]);
+
+
     const navigate = useNavigate()
 
     let imagePath = "";
@@ -108,6 +123,8 @@ export default function ProductDetails({data, setData}){
         navigate(`/products/product-edit/${data.id}`)
     }
 
+    
+
     return(
         <ProfilePage>
             <FormDiv>
@@ -117,7 +134,7 @@ export default function ProductDetails({data, setData}){
                 <Label htmlFor="name">Nombre</Label>
                 <Text type="text" value={data.name} disabled/>
                 <Label htmlFor="category">Categoría</Label>
-                <Text type="text" value={data.category_id} disabled/>
+                <Text type="text" value={category.name} disabled/>
                 <Label htmlFor="price">Precio</Label>
                 <Text type="number" value={`$${data.price}`} disabled/>
                 <Label htmlFor="description">descripcion</Label>

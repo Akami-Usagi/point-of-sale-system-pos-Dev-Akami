@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { backgroundColor } from "../styles";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import api from "../api";
 import axios from "axios";
 
@@ -107,24 +108,48 @@ const ProfilePic = styled.img`
 
 
 
-export default function ProductEdit({data}){
+export default function ProductEdit(){
+
+    const navigate = useNavigate();
+    const [product, setProduct] = useState([]);
+    const {id} = useParams();
+
+    const [image, setImage] = useState(null);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [stock, setStock] = useState(0);
+    const [price, setPrice] = useState(0);
+    const [category_id, setCategory_id] = useState(0);
+
+
+    useEffect(() => {
+        // get product
+        api.get(`/products/${id}`)
+        .then((response) => {
+            setProduct(response.data);
+            setName(response.data.name);
+            setDescription(response.data.description);
+            setStock(response.data.stock);
+            setPrice(response.data.price);
+            setCategory_id(response.data.category_id);
+            setImage(response.data.image_path)
+        })
+        .catch((error) => {
+            console.error('Error fetching Products:', error);
+        });
+    }, [id]);
 
     let imagePath = "";
 
-    if (data.image_path === null){
+    if (product.image_path === null){
         imagePath = "/images/placeholder_item.webp"
     }else{
-        imagePath = `http://akemihouse-backend.test/${data.image_path}`
+        imagePath = `http://akemihouse-backend.test/${product.image_path}`
     }
 
-    const navigate = useNavigate();
     
-    const image = data.image_path;
-    const [name, setName] = useState(data.name);
-    const [description, setDescription] = useState(data.description);
-    const [stock, setStock] = useState(data.stock);
-    const [price, setPrice] = useState(data.price);
-    const [category_id, setCategory_id] = useState(data.category_id);
+    
+    
 
     const formData = {
         name,
@@ -153,7 +178,7 @@ export default function ProductEdit({data}){
         e.preventDefault();
         try {
             
-            const response = await axios.put(`http://akemihouse-backend.test/api/products/${data.id}`, formData);
+            const response = await axios.put(`http://akemihouse-backend.test/api/products/${product.id}`, formData);
             alert('Datos actualizados con éxito: ' + response.data.message);
             navigate("/products")
         } catch (error) {

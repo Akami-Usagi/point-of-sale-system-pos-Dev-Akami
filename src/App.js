@@ -9,8 +9,7 @@ import Profile from "./pages/profile";
 import Products from "./pages/products";
 import ProductDetails from "./pages/productDetails";
 import NewProduct from "./pages/newProduct";
-import Tester from "./pages/tester";
-import AddProductForm from "./pages/addProductForm";
+
 import { useState } from "react";
 
 
@@ -34,8 +33,8 @@ function App() {
         <Route path="/products" element={<Products setData={setProductData}/>}/>
         <Route path="/products/details/*" element={<ProductDetails data={productData}/>}/>
         <Route path="/products/new-product" element={<NewProduct/>}/>
-        <Route path="/tester" element={<Tester/>}/>
-        <Route path="/inyector" element={<AddProductForm/>}/>
+        
+        
 
 
       </Routes>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { backgroundColor } from "../styles";
+import { useNavigate } from "react-router-dom";
 
 
 const ProfilePage = styled.div`
@@ -89,7 +90,9 @@ const ProfilePic = styled.img`
 
 
 
-export default function ProductDetails({data}){
+export default function ProductDetails({data, setData}){
+
+    const navigate = useNavigate()
 
     let imagePath = "";
 
@@ -101,7 +104,8 @@ export default function ProductDetails({data}){
 
 
     function handleEdit(){
-        alert("Not implemented yet")
+        setData(data)
+        navigate(`/products/product-edit/${data.id}`)
     }
 
     return(

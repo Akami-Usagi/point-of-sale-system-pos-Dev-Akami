@@ -178,7 +178,7 @@ export default function ProductEdit(){
         e.preventDefault();
         try {
             
-            const response = await axios.put(`http://akemihouse-backend.test/api/products/${product.id}`, formData);
+            const response = await axios.patch(`http://akemihouse-backend.test/api/products/${product.id}`, formData);
             alert('Datos actualizados con éxito: ' + response.data.message);
             navigate("/products")
         } catch (error) {

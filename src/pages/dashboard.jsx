@@ -4,6 +4,8 @@ import CategoryCard from "../components/categoriCard";
 import ProductCard from "../components/productCard";
 import Order from "../components/order";
 import Sidebar from "../components/sidebar";
+import { useState, useEffect } from "react";
+import api from "../api";
 
 
 const MainDiv = styled.div`
@@ -78,28 +80,27 @@ const PayDiv = styled.div`
 export default function Dashboard(){
 
 
-    const categorias = [
-        {
-            nombre: "Peluches",
-            cantidad: 10
-        },
-        {
-            nombre: "Decoraciones",
-            cantidad: 7
-        },
-        {
-            nombre: "Arreglos",
-            cantidad: 18
-        },
-        {
-            nombre: "Promociones",
-            cantidad: 9
-        },
-        {
-            nombre: "Importados",
-            cantidad: 21
-        },
-    ]
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
+
+    
+
+    useEffect(() => {
+        api.get('/categories')
+        .then((response) => {
+            setCategories(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching categories:', error);
+        });
+        api.get('/products')
+        .then((response) => {
+            setProducts(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching products:', error);
+        });
+    }, []);
 
    
 
@@ -110,23 +111,19 @@ export default function Dashboard(){
             <ContentDiv>
                 
                 <CategoryDiv>  
-                    {categorias.map((categoria) => {
+                {categories.map((categoria) => {
                         return(
-                            <CategoryCard nombre={categoria.nombre} cantidad={categoria.cantidad}/>
+                            <CategoryCard key={categoria.id} nombre={categoria.name}/>
                         )
                     })}
                 </CategoryDiv>
                 <ProductDiv>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
+                {products.map((producto) => {
+                        return(
+                            
+                            <ProductCard key={producto.id} data={producto}/>
+                        )
+                    })}
                 </ProductDiv>
             </ContentDiv>
             <OrderDiv>

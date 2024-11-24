@@ -30,18 +30,14 @@ const Title = styled.h3`
     margin-top: 0;
     color: #B5B7C3;
 `
-const Description = styled.p`
-    margin-top: -20px;
-    font-size: 12px;
-    
-`
 
-export default function CategoryCard({nombre, cantidad}){
+
+export default function CategoryCard({nombre}){
     return(
         <CardDiv>
             <Icon/>
             <Title>{nombre}</Title>
-            <Description>{`${cantidad} productos`}</Description>
+            
         </CardDiv>
     )
 }

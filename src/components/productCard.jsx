@@ -46,15 +46,24 @@ const Price = styled.h2`
     margin-bottom: -10px;
 `
 
-export default function ProductCard(){
+export default function ProductCard({data}){
+
+    let imagePath = "";
+
+    if (data.image_path === null){
+        imagePath = "/images/placeholder_item.webp"
+    }else{
+        imagePath = `http://akemihouse-backend.test/${data.image_path}`
+    }
+
     return(
         <CardDiv>
             <ProductDiv>
-                <ProductPic src="images/placeholder_item.webp" alt="picture" />   
+                <ProductPic src={imagePath} alt="picture" />   
             </ProductDiv>
-            <Title>Placeholder Item</Title>
-            <Description>Item Description</Description>
-            <Price>$5.000</Price>
+            <Title>{data.name}</Title>
+            <Description>{data.description}</Description>
+            <Price>{`$${data.price}`}</Price>
         </CardDiv>
     )
 }

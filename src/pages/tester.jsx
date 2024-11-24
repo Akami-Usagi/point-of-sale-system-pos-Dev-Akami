@@ -20,7 +20,7 @@ function Tester() {
       <h1>Lista de categorias</h1>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>{product.name} - {product.description} - {product.price}</li>
+          <li key={product.id}>{product.name} - {product.description} - {product.price} - {product.image_path}</li>
         ))}
       </ul>
       <Link to={"/inyector"}>crear producto nuevo</Link>

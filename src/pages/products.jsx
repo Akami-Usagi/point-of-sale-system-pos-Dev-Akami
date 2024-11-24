@@ -5,6 +5,8 @@ import ProductCard from "../components/productCard";
 import { FaPlusCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/sidebar";
+import { useEffect, useState } from "react";
+import api from "../api";
 
 
 const MainDiv = styled.div`
@@ -52,31 +54,32 @@ const ProductLink = styled(Link)`
     text-decoration: none;
 `
 
-export default function Products(){
+export default function Products({setData}){
+
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
+
+    
+
+    useEffect(() => {
+        api.get('/categories')
+        .then((response) => {
+            setCategories(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching categories:', error);
+        });
+        api.get('/products')
+        .then((response) => {
+            setProducts(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching products:', error);
+        });
+    }, []);
 
 
-    const categorias = [
-        {
-            nombre: "Peluches",
-            cantidad: 10
-        },
-        {
-            nombre: "Decoraciones",
-            cantidad: 7
-        },
-        {
-            nombre: "Arreglos",
-            cantidad: 18
-        },
-        {
-            nombre: "Promociones",
-            cantidad: 9
-        },
-        {
-            nombre: "Importados",
-            cantidad: 21
-        },
-    ]
+    
 
    
 
@@ -85,23 +88,19 @@ export default function Products(){
             <Sidebar/>
             <ContentDiv>
                 <CategoryDiv>  
-                    {categorias.map((categoria) => {
+                    {categories.map((categoria) => {
                         return(
-                            <CategoryCard nombre={categoria.nombre} cantidad={categoria.cantidad}/>
+                            <CategoryCard key={categoria.id} nombre={categoria.name}/>
                         )
                     })}
                 </CategoryDiv>
                 <ProductDiv>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
-                    <ProductLink to={"/products/details"}><ProductCard/></ProductLink>
+                {products.map((producto) => {
+                        return(
+                            
+                            <ProductLink onClick={() => setData(producto)} key={producto.id} to={`/products/details/${producto.id}`}><ProductCard key={producto.id} data={producto}/></ProductLink>
+                        )
+                    })}
                     
                     
                     

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { backgroundColor } from "../styles";
 
+
 const ProfilePage = styled.div`
     width: 100%;
     display: flex;
@@ -88,9 +89,16 @@ const ProfilePic = styled.img`
 
 
 
-export default function ProductDetails(){
+export default function ProductDetails({data}){
 
-    const lorenIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    let imagePath = "";
+
+    if (data.image_path === null){
+        imagePath = "/images/placeholder_item.webp"
+    }else{
+        imagePath = `http://akemihouse-backend.test/${data.image_path}`
+    }
+
 
     function handleEdit(){
         alert("Not implemented yet")
@@ -100,20 +108,18 @@ export default function ProductDetails(){
         <ProfilePage>
             <FormDiv>
 
-                <ProfilePic src="/images/placeholder_item.webp" alt="Profile Pic" />
+                <ProfilePic src={imagePath} alt="Profile Pic" />
 
                 <Label htmlFor="name">Nombre</Label>
-                <Text type="text" value={"Placeholder Item"} disabled/>
+                <Text type="text" value={data.name} disabled/>
                 <Label htmlFor="category">Categoría</Label>
-                <Text type="text" value={"Placeholder Category"} disabled/>
-                <Label htmlFor="id">Codigo</Label>
-                <Text type="number" value={"001"} disabled/>
+                <Text type="text" value={data.category_id} disabled/>
                 <Label htmlFor="price">Precio</Label>
-                <Text type="number" value={"$5.000"} disabled/>
+                <Text type="number" value={`$${data.price}`} disabled/>
                 <Label htmlFor="description">descripcion</Label>
-                <ItemDescription>{lorenIpsum}</ItemDescription>
+                <ItemDescription>{data.description}</ItemDescription>
                 <Label htmlFor="stock">Cantidad en Stock</Label>
-                <Text type="number" value={35} disabled/>
+                <Text type="number" value={data.stock} disabled/>
                 
                 <Button onClick={handleEdit}>Editar Producto</Button>
             </FormDiv>

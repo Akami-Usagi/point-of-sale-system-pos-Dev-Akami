@@ -54,6 +54,20 @@ const Text = styled.textarea`
     
     
 `
+const Select = styled.select`
+    height: 60px;
+    border: none;
+    background-color: ${backgroundColor};
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    font-size: large;
+    font-family: sans-serif;
+    color: #525252;
+    resize: none;
+`
 const Button = styled.button`
     width: 250px;
     height: 50px;
@@ -91,18 +105,17 @@ const ProfilePic = styled.img`
     overflow: hidden;
 `
 const FileInput = styled.input`
-    
-    align-self: center;
+    padding-bottom: 20px;
+    margin-left: 5px;
     
 `
 
 
 
 export default function NewProduct(){
-    const navigate = useNavigate()
-    const [file, setFile] = useState("/images/add_product.webp")
-
-
+    const navigate = useNavigate();
+    const [file, setFile] = useState("/images/add_product.webp");
+    const [image, setImage] = useState(null)
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [stock, setStock] = useState(0);
@@ -114,20 +127,21 @@ export default function NewProduct(){
         description,
         stock,
         price,
-        category_id
+        category_id,
+        image
     };
 
     const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    api.get('/categories')
-      .then((response) => {
-        setCategories(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching users:', error);
-      });
-  }, []);
+    useEffect(() => {
+        api.get('/categories')
+        .then((response) => {
+            setCategories(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching users:', error);
+        });
+    }, []);
 
     
 
@@ -135,14 +149,23 @@ export default function NewProduct(){
         e.preventDefault();
         try {
             
-            const response = await axios.post('http://akemihouse-backend.test/api/products', formData);
+            const response = await axios.post("http://akemihouse-backend.test/api/products", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
             alert('Datos enviados con éxito: ' + response.data.message);
-            navigate("/tester")
+            navigate("/products")
         } catch (error) {
             console.error('Error al enviar los datos', error.response?.data);
-            alert('Ocurrió un error al enviar los datos.');
+            alert('Ocurrió un error al enviar los datos. ' + error.response?.data.message);
         }
     };
+
+
+    
+    
+    
 
     return(
         <ProfilePage>
@@ -152,9 +175,10 @@ export default function NewProduct(){
                     <ProfilePic src={file} alt="Profile Pic" />
                 </ProfilePicDiv>
                 
-
+                <Label htmlFor="file">Maximo 10Mb</Label>
                 <FileInput type="file" accept="image/*" onChange={(event) => {
                     setFile(URL.createObjectURL(event.target.files[0]))
+                    setImage(event.target.files[0])
                 }}/>
 
                 <Label htmlFor="name">Nombre</Label>
@@ -174,7 +198,7 @@ export default function NewProduct(){
                     setStock(event.target.value)
                 }}/>
                 <Label htmlFor="category">Categoría</Label>
-                <select name="category_id"
+                <Select name="category_id"
                         value={category_id}
                         onChange={(event)=>{
                             setCategory_id(event.target.value)
@@ -184,7 +208,7 @@ export default function NewProduct(){
                 {categories.map((category) => (
                     <option value={category.id} key={category.id}>{category.name}</option>
                     ))}
-                </select>
+                </Select>
                 
                 <Button onClick={handleSubmit}>Guardar Producto</Button>
             </FormDiv>

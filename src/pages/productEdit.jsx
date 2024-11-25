@@ -186,7 +186,18 @@ export default function ProductEdit(){
         }
     };
 
-
+    const handleDelete = async () => {
+        try {
+            // Enviar la solicitud DELETE
+            const response = await api.delete(`/products/${product.id}`);
+            alert('Producto eliminado con éxito');
+            navigate("/products")
+            
+        } catch (error) {
+            console.error('Error al eliminar el producto', error.response?.data);
+            alert('Ocurrió un error al eliminar el producto: ' + error.response?.data.message);
+        }
+    };
     
     
     console.log(formData);
@@ -231,8 +242,8 @@ export default function ProductEdit(){
                     ))}
                 </Select>
                 
-                <Button onClick={handleSubmit}>Guardar Producto</Button>
-                <Button onClick={handleSubmit}>Eliminar Producto</Button>
+                <Button onClick={handleSubmit}>Editar Producto</Button>
+                <Button onClick={handleDelete}>Eliminar Producto</Button>
             </FormDiv>
         </ProfilePage>
     )

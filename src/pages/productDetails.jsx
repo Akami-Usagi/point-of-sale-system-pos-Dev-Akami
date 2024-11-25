@@ -162,14 +162,17 @@ export default function ProductDetails(){
 
                 <Label htmlFor="name">Nombre</Label>
                 <Text type="text" value={product.name} disabled/>
-                <Label htmlFor="category">Categoría</Label>
-                <Text type="text" value={category.name} disabled/>
-                <Label htmlFor="price">Precio</Label>
-                <Text type="number" value={`$${product.price}`} disabled/>
                 <Label htmlFor="description">descripcion</Label>
                 <ItemDescription>{product.description}</ItemDescription>
+                <Label htmlFor="price">Precio</Label>
+                <Text type="number" value={`$${product.price}`} disabled/>
                 <Label htmlFor="stock">Cantidad en Stock</Label>
                 <Text type="number" value={product.stock} disabled/>
+                <Label htmlFor="category">Categoría</Label>
+                <Text type="text" value={category.name} disabled/>
+                
+               
+               
                 
                 <Button onClick={handleEdit}>Editar Producto</Button>
             </FormDiv>

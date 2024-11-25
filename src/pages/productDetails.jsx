@@ -4,6 +4,7 @@ import { backgroundColor } from "../styles";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api";
+import { useParams } from "react-router-dom";
 
 
 const ProfilePage = styled.div`
@@ -82,45 +83,67 @@ const Button = styled.button`
         cursor: pointer;
     }
 `
-const ProfilePic = styled.img`
-    width: 300px;
+const ProfilePicDiv = styled.div`
     align-self: center;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
     border-radius: 100%;
-    margin-bottom: 20px;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+`
+const ProfilePic = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
 `
 
 
 
-export default function ProductDetails({data, setData}){
+export default function ProductDetails(){
 
     const [category, setCategory] = useState([]);
+    const [product, setProduct] = useState([]);
+    const {id} = useParams();
 
     useEffect(() => {
-        api.get(`/categories/${data.id}`)
+        //get categories
+        api.get(`/categories/${id}`)
         .then((response) => {
             setCategory(response.data);
         })
         .catch((error) => {
             console.error('Error fetching categories:', error);
         });
-    }, [data.id]);
+        // get product
+        api.get(`/products/${id}`)
+        .then((response) => {
+            setProduct(response.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching Products:', error);
+        });
+    }, [id]);
 
 
     const navigate = useNavigate()
 
     let imagePath = "";
 
-    if (data.image_path === null){
+    if(product.image_path === null){
         imagePath = "/images/placeholder_item.webp"
     }else{
-        imagePath = `http://akemihouse-backend.test/${data.image_path}`
+        imagePath = `http://akemihouse-backend.test/${product.image_path}`
     }
+        
+    
 
 
     function handleEdit(){
-        setData(data)
-        navigate(`/products/product-edit/${data.id}`)
+        navigate(`/products/product-edit/${id}`)
     }
 
     
@@ -129,18 +152,20 @@ export default function ProductDetails({data, setData}){
         <ProfilePage>
             <FormDiv>
 
-                <ProfilePic src={imagePath} alt="Profile Pic" />
+                <ProfilePicDiv>
+                    <ProfilePic src={imagePath} alt="Profile Pic" />
+                </ProfilePicDiv>
 
                 <Label htmlFor="name">Nombre</Label>
-                <Text type="text" value={data.name} disabled/>
+                <Text type="text" value={product.name} disabled/>
                 <Label htmlFor="category">Categoría</Label>
                 <Text type="text" value={category.name} disabled/>
                 <Label htmlFor="price">Precio</Label>
-                <Text type="number" value={`$${data.price}`} disabled/>
+                <Text type="number" value={`$${product.price}`} disabled/>
                 <Label htmlFor="description">descripcion</Label>
-                <ItemDescription>{data.description}</ItemDescription>
+                <ItemDescription>{product.description}</ItemDescription>
                 <Label htmlFor="stock">Cantidad en Stock</Label>
-                <Text type="number" value={data.stock} disabled/>
+                <Text type="number" value={product.stock} disabled/>
                 
                 <Button onClick={handleEdit}>Editar Producto</Button>
             </FormDiv>

@@ -54,7 +54,7 @@ const ProductLink = styled(Link)`
     text-decoration: none;
 `
 
-export default function Products({setData}){
+export default function Products(){
 
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
@@ -88,17 +88,17 @@ export default function Products({setData}){
             <Sidebar/>
             <ContentDiv>
                 <CategoryDiv>  
-                    {categories.map((categoria) => {
+                    {categories.map((category) => {
                         return(
-                            <CategoryCard key={categoria.id} nombre={categoria.name}/>
+                            <CategoryCard key={category.id} nombre={category.name}/>
                         )
                     })}
                 </CategoryDiv>
                 <ProductDiv>
-                {products.map((producto) => {
+                {products.map((product) => {
                         return(
                             
-                            <ProductLink onClick={() => setData(producto)} key={producto.id} to={`/products/details/${producto.id}`}><ProductCard key={producto.id} data={producto}/></ProductLink>
+                            <ProductLink key={product.id} to={`/products/details/${product.id}`}><ProductCard key={product.id} data={product}/></ProductLink>
                         )
                     })}
                     

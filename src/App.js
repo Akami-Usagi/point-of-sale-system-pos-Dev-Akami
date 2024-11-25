@@ -11,17 +11,10 @@ import ProductDetails from "./pages/productDetails";
 import NewProduct from "./pages/newProduct";
 import ProductEdit from "./pages/productEdit";
 
-import { useState } from "react";
-
-
-
 
 function App() {
 
-  const [productData, setProductData] = useState(null);
-
-
-
+ 
   return (
     <Router>
       <AppHeader/>
@@ -31,10 +24,10 @@ function App() {
         <Route path="/recovery" element={<PasswordRecovery/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/profile" element={<Profile/>}/>
-        <Route path="/products" element={<Products setData={setProductData}/>}/>
-        <Route path="/products/details/*" element={<ProductDetails data={productData} setData={setProductData}/>}/>
+        <Route path="/products" element={<Products/>}/>
+        <Route path="/products/details/:id" element={<ProductDetails/>}/>
         <Route path="/products/new-product" element={<NewProduct/>}/>
-        <Route path="/products/product-edit/*" element={<ProductEdit data={productData}/>}/>
+        <Route path="/products/product-edit/:id" element={<ProductEdit/>}/>
         
         
 

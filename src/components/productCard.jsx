@@ -53,7 +53,7 @@ export default function ProductCard({data}){
     if (data.image_path === null){
         imagePath = "/images/placeholder_item.webp"
     }else{
-        imagePath = `http://akemihouse-backend.test/${data.image_path}`
+        imagePath = `http://akemihouse-backend.test/storage/${data.image_path}`
     }
 
     return(

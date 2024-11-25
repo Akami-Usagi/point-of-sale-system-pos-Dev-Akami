@@ -143,7 +143,7 @@ export default function ProductEdit(){
     if (product.image_path === null){
         imagePath = "/images/placeholder_item.webp"
     }else{
-        imagePath = `http://akemihouse-backend.test/${product.image_path}`
+        imagePath = `http://akemihouse-backend.test/storage/${product.image_path}`
     }
 
     
@@ -190,7 +190,7 @@ export default function ProductEdit(){
         try {
             // Enviar la solicitud DELETE
             const response = await api.delete(`/products/${product.id}`);
-            alert('Producto eliminado con éxito');
+            alert('Producto eliminado con éxito ' + response.data.message);
             navigate("/products")
             
         } catch (error) {
@@ -199,8 +199,6 @@ export default function ProductEdit(){
         }
     };
     
-    
-    console.log(formData);
     
 
     return(

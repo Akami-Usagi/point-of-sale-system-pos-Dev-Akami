@@ -110,22 +110,26 @@ export default function ProductDetails(){
     const {id} = useParams();
 
     useEffect(() => {
-        //get categories
-        api.get(`/categories/${id}`)
-        .then((response) => {
-            setCategory(response.data);
-        })
-        .catch((error) => {
-            console.error('Error fetching categories:', error);
-        });
+        
         // get product
         api.get(`/products/${id}`)
         .then((response) => {
             setProduct(response.data);
+            // get category
+            api.get(`/categories/${response.data.category_id}`)
+                .then((response) => {
+                setCategory(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching categories:', error);
+            });
         })
         .catch((error) => {
             console.error('Error fetching Products:', error);
         });
+
+        //get categories
+        
     }, [id]);
 
 
@@ -136,7 +140,7 @@ export default function ProductDetails(){
     if(product.image_path === null){
         imagePath = "/images/placeholder_item.webp"
     }else{
-        imagePath = `http://akemihouse-backend.test/${product.image_path}`
+        imagePath = `http://akemihouse-backend.test/storage/${product.image_path}`
     }
         
     

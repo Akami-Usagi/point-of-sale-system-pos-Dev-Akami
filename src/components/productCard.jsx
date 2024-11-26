@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import api from "../api";
-import { useState, useEffect } from "react";
 
 
 const CardDiv = styled.div`
@@ -50,23 +48,12 @@ const Price = styled.h2`
 
 export default function ProductCard({data}){
 
-    const [imagePath, setImagePath] = useState("/images/placeholder_item.webp")
-
-    useEffect(() => {
-        api.get(`images/${data.image_id}`)
-        .then((response) => {
-            setImagePath(`http://akemihouse-backend.test/storage/${response.data.image_path}`)
-            
-        })
-        .catch((error) => {
-            console.error('Error fetching users:', error);
-        });
-    }, [data.image_id]);
+     
 
     return(
         <CardDiv>
             <ProductDiv>
-                <ProductPic src={imagePath} alt="picture" />   
+                <ProductPic src={`http://akemihouse-backend.test/storage/${data.image_path}`} alt="picture" />   
             </ProductDiv>
             <Title>{data.name}</Title>
             <Description>{data.description}</Description>

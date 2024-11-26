@@ -155,12 +155,13 @@ export default function NewProduct(){
                     "Content-Type": "multipart/form-data",
                 },
             });
+            const uploadedImagePath = response.data.data.image_path; // Guardar directamente el ID
             const uploadedImageId = response.data.data.id; // Guardar directamente el ID
-            
             // Agregar el ID al formData
             const updatedFormData = {
                 ...formData,
                 image_id: uploadedImageId,
+                image_path: uploadedImagePath,
             };
             
             // Crear el producto
@@ -173,10 +174,6 @@ export default function NewProduct(){
         }
     };
 
-
-    
-    
-    
 
     return(
         <ProfilePage>

@@ -143,7 +143,7 @@ export default function ProductEdit(){
             setFile(`http://akemihouse-backend.test/storage/${response.data.image_path}`)
         })
         .catch((error) => {
-            console.error('Error fetching Products:', error);
+            console.error('Error fetching Product:', error);
         });
     }, [id]);
 
@@ -194,8 +194,8 @@ export default function ProductEdit(){
                 
                 // Crear el producto
                 const productResponse = await api.put(`/products/${product.id}`, updatedFormData);
-                
-                alert("Producto guardado correctamente, " + productResponse.data.message);
+                const imageResponse = await api.delete(`/images/${imageId}`);
+                alert("Producto guardado correctamente, " + productResponse.data.message + imageResponse.data.message);
                 navigate("/products");
             } catch (error) {
                 console.error("Error al enviar los datos", error.response?.data);
@@ -210,9 +210,8 @@ export default function ProductEdit(){
                 };
                 
                 // Crear el producto
-                const productResponse = await api.patch(`/products/${product.id}`, updatedFormData);
-                const imageResponse = await api.delete(`/images/${imageId}`);
-                alert("Producto guardado correctamente, " + productResponse.data.message + imageResponse.data.message);
+                const productResponse = await api.put(`/products/${product.id}`, updatedFormData);
+                alert("Producto guardado correctamente, " + productResponse.data.message);
                 navigate("/products");
             } catch (error) {
                 console.error("Error al enviar los datos", error.response?.data);
@@ -229,7 +228,8 @@ export default function ProductEdit(){
         try {
             // Enviar la solicitud DELETE
             const response = await api.delete(`/products/${product.id}`);
-            alert('Producto eliminado con éxito ' + response.data.message);
+            const imageResponse = await api.delete(`/images/${imageId}`)
+            alert('Producto eliminado con éxito ' + response.data.message + " " + imageResponse.data.message);
             navigate("/products")
             
         } catch (error) {

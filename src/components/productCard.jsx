@@ -48,18 +48,12 @@ const Price = styled.h2`
 
 export default function ProductCard({data}){
 
-    let imagePath = "";
-
-    if (data.image_path === null){
-        imagePath = "/images/placeholder_item.webp"
-    }else{
-        imagePath = `http://akemihouse-backend.test/storage/${data.image_path}`
-    }
+     
 
     return(
         <CardDiv>
             <ProductDiv>
-                <ProductPic src={imagePath} alt="picture" />   
+                <ProductPic src={`http://akemihouse-backend.test/storage/${data.image_path}`} alt="picture" />   
             </ProductDiv>
             <Title>{data.name}</Title>
             <Description>{data.description}</Description>

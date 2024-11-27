@@ -104,7 +104,11 @@ const ProfilePic = styled.img`
     object-fit: cover;
     overflow: hidden;
 `
-
+const FileInput = styled.input`
+    padding-bottom: 20px;
+    margin-left: 5px;
+    
+`
 
 
 export default function ProductEdit(){
@@ -113,7 +117,10 @@ export default function ProductEdit(){
     const [product, setProduct] = useState([]);
     const {id} = useParams();
 
+    const [file, setFile] = useState("")
     const [image, setImage] = useState(null);
+    const [imageId, setImageId] = useState(0);
+    const [imageChange, setImageChange] = useState(null);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [stock, setStock] = useState(0);
@@ -132,23 +139,17 @@ export default function ProductEdit(){
             setPrice(response.data.price);
             setCategory_id(response.data.category_id);
             setImage(response.data.image_path)
+            setImageId(response.data.image_id)
+            setFile(`http://akemihouse-backend.test/storage/${response.data.image_path}`)
         })
         .catch((error) => {
-            console.error('Error fetching Products:', error);
+            console.error('Error fetching Product:', error);
         });
     }, [id]);
 
-    let imagePath = "";
-
-    if (product.image_path === null){
-        imagePath = "/images/placeholder_item.webp"
-    }else{
-        imagePath = `http://akemihouse-backend.test/storage/${product.image_path}`
-    }
-
-    
-    
-    
+    const imageFormData = {
+        image: imageChange
+    };
 
     const formData = {
         name,
@@ -156,7 +157,6 @@ export default function ProductEdit(){
         stock,
         price,
         category_id,
-        image_path: image
     };
 
     const [categories, setCategories] = useState([]);
@@ -171,26 +171,65 @@ export default function ProductEdit(){
         });
     }, []);
 
-    
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            
-            const response = await api.patch(`/products/${product.id}`, formData);
-            alert('Datos actualizados con éxito: ' + response.data.message);
-            navigate("/products")
-        } catch (error) {
-            console.error('Error al actualizar los datos', error.response?.data);
-            alert('Ocurrió un error al actualizar los datos. ' + error.response?.data.message);
-        }
-    };
+        if (imageChange !== null){
+            try {
+                
+                // Subir imagen y obtener el ID
+                const response = await api.post("/images", imageFormData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+                const uploadedImagePath = response.data.data.image_path; // Guardar directamente el ID
+                const uploadedImageId = response.data.data.id; // Guardar directamente el ID
+                // Agregar el ID al formData
+                const updatedFormData = {
+                    ...formData,
+                    image_id: uploadedImageId,
+                    image_path: uploadedImagePath,
+                };
+                console.log(updatedFormData);
+                
+                // Crear el producto
+                const productResponse = await api.put(`/products/${product.id}`, updatedFormData);
+                const imageResponse = await api.delete(`/images/${imageId}`);
+                alert("Producto guardado correctamente, " + productResponse.data.message + imageResponse.data.message);
+                navigate("/products");
+            } catch (error) {
+                console.error("Error al enviar los datos", error.response?.data);
+                alert("Ocurrió un error al enviar los datos. " + error.response?.data.message);
+            }
+        }else{
+            try {
+                const updatedFormData = {
+                    ...formData,
+                    image_id: imageId,
+                    image_path: image,
+                };
+                
+                // Crear el producto
+                const productResponse = await api.put(`/products/${product.id}`, updatedFormData);
+                alert("Producto guardado correctamente, " + productResponse.data.message);
+                navigate("/products");
+            } catch (error) {
+                console.error("Error al enviar los datos", error.response?.data);
+                alert("Ocurrió un error al enviar los datos. " + error.response?.data.message);
+            }
+            }
+        };
+        
+    
+
+    
 
     const handleDelete = async () => {
         try {
             // Enviar la solicitud DELETE
             const response = await api.delete(`/products/${product.id}`);
-            alert('Producto eliminado con éxito ' + response.data.message);
+            const imageResponse = await api.delete(`/images/${imageId}`)
+            alert('Producto eliminado con éxito ' + response.data.message + " " + imageResponse.data.message);
             navigate("/products")
             
         } catch (error) {
@@ -199,16 +238,21 @@ export default function ProductEdit(){
         }
     };
     
-    
+       
 
     return(
         <ProfilePage>
             
             <FormDiv>
                 <ProfilePicDiv>
-                    <ProfilePic src={imagePath} alt="Profile Pic" />
+                    <ProfilePic src={file} alt="Profile Pic" />
                 </ProfilePicDiv>
-                
+
+                <Label htmlFor="file">Maximo 10Mb</Label>
+                <FileInput type="file" accept="image/*" onChange={(event) => {
+                    setFile(URL.createObjectURL(event.target.files[0]))
+                    setImageChange(event.target.files[0])
+                }}/>
                 
 
                 <Label htmlFor="name">Nombre</Label>

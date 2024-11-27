@@ -121,13 +121,15 @@ export default function NewProduct(){
     const [price, setPrice] = useState(0);
     const [category_id, setCategory_id] = useState("");
 
+    const imageFormData = {
+        image
+    };
     const formData = {
         name,
         description,
         stock,
         price,
         category_id,
-        image
     };
 
     const [categories, setCategories] = useState([]);
@@ -147,24 +149,31 @@ export default function NewProduct(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            
-            const response = await api.post("/products", formData, {
+            // Subir imagen y obtener el ID
+            const response = await api.post("/images", imageFormData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            alert('Datos enviados con éxito: ' + response.data.message);
-            navigate("/products")
+            const uploadedImagePath = response.data.data.image_path; // Guardar directamente el ID
+            const uploadedImageId = response.data.data.id; // Guardar directamente el ID
+            // Agregar el ID al formData
+            const updatedFormData = {
+                ...formData,
+                image_id: uploadedImageId,
+                image_path: uploadedImagePath,
+            };
+            
+            // Crear el producto
+            const productResponse = await api.post("/products", updatedFormData);
+            alert("Producto guardado correctamente, " + productResponse.data.message);
+            navigate("/products");
         } catch (error) {
-            console.error('Error al enviar los datos', error.response?.data);
-            alert('Ocurrió un error al enviar los datos. ' + error.response?.data.message);
+            console.error("Error al enviar los datos", error.response?.data);
+            alert("Ocurrió un error al enviar los datos. " + error.response?.data.message);
         }
     };
 
-
-    
-    
-    
 
     return(
         <ProfilePage>

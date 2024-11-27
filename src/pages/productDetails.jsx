@@ -134,30 +134,19 @@ export default function ProductDetails(){
 
 
     const navigate = useNavigate()
-
-    let imagePath = "";
-
-    if(product.image_path === null){
-        imagePath = "/images/placeholder_item.webp"
-    }else{
-        imagePath = `http://akemihouse-backend.test/storage/${product.image_path}`
-    }
-        
+   
     
-
-
     function handleEdit(){
         navigate(`/products/product-edit/${id}`)
     }
 
     
-
     return(
         <ProfilePage>
             <FormDiv>
 
                 <ProfilePicDiv>
-                    <ProfilePic src={imagePath} alt="Profile Pic" />
+                    <ProfilePic src={`http://akemihouse-backend.test/storage/${product.image_path}`} alt="Profile Pic" />
                 </ProfilePicDiv>
 
                 <Label htmlFor="name">Nombre</Label>

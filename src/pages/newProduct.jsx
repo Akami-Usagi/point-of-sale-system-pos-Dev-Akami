@@ -122,7 +122,8 @@ export default function NewProduct(){
     const [category_id, setCategory_id] = useState("");
 
     const imageFormData = {
-        image
+        image,
+        path: "products"
     };
     const formData = {
         name,
@@ -163,6 +164,7 @@ export default function NewProduct(){
                 image_id: uploadedImageId,
                 image_path: uploadedImagePath,
             };
+            
             
             // Crear el producto
             const productResponse = await api.post("/products", updatedFormData);

@@ -148,7 +148,8 @@ export default function ProductEdit(){
     }, [id]);
 
     const imageFormData = {
-        image: imageChange
+        image: imageChange,
+        path: "products"
     };
 
     const formData = {
@@ -190,8 +191,7 @@ export default function ProductEdit(){
                     image_id: uploadedImageId,
                     image_path: uploadedImagePath,
                 };
-                console.log(updatedFormData);
-                
+                                
                 // Crear el producto
                 const productResponse = await api.put(`/products/${product.id}`, updatedFormData);
                 const imageResponse = await api.delete(`/images/${imageId}`);

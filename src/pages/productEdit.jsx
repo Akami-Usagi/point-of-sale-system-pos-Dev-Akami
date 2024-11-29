@@ -140,7 +140,7 @@ export default function ProductEdit(){
             setCategory_id(response.data.category_id);
             setImage(response.data.image_path)
             setImageId(response.data.image_id)
-            setFile(`http://akemihouse-backend.test/storage/${response.data.image_path}`)
+            setFile(`http://akemihouse-backend.test/storage/${response.data.image.image_path}`)
         })
         .catch((error) => {
             console.error('Error fetching Product:', error);
@@ -183,19 +183,19 @@ export default function ProductEdit(){
                         "Content-Type": "multipart/form-data",
                     },
                 });
-                const uploadedImagePath = response.data.data.image_path; // Guardar directamente el ID
+                
                 const uploadedImageId = response.data.data.id; // Guardar directamente el ID
                 // Agregar el ID al formData
                 const updatedFormData = {
                     ...formData,
                     image_id: uploadedImageId,
-                    image_path: uploadedImagePath,
+                    
                 };
                                 
                 // Crear el producto
                 const productResponse = await api.put(`/products/${product.id}`, updatedFormData);
-                const imageResponse = await api.delete(`/images/${imageId}`);
-                alert("Producto guardado correctamente, " + productResponse.data.message + imageResponse.data.message);
+                
+                alert("Producto guardado correctamente, " + productResponse.data.message);
                 navigate("/products");
             } catch (error) {
                 console.error("Error al enviar los datos", error.response?.data);
@@ -206,7 +206,6 @@ export default function ProductEdit(){
                 const updatedFormData = {
                     ...formData,
                     image_id: imageId,
-                    image_path: image,
                 };
                 
                 // Crear el producto
@@ -228,8 +227,8 @@ export default function ProductEdit(){
         try {
             // Enviar la solicitud DELETE
             const response = await api.delete(`/products/${product.id}`);
-            const imageResponse = await api.delete(`/images/${imageId}`)
-            alert('Producto eliminado con éxito ' + response.data.message + " " + imageResponse.data.message);
+            
+            alert('Producto eliminado con éxito ' + response.data.message);
             navigate("/products")
             
         } catch (error) {

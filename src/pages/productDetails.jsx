@@ -105,7 +105,6 @@ const ProfilePic = styled.img`
 
 export default function ProductDetails(){
 
-    const [category, setCategory] = useState([]);
     const [product, setProduct] = useState([]);
     const {id} = useParams();
 
@@ -115,14 +114,7 @@ export default function ProductDetails(){
         api.get(`/products/${id}`)
         .then((response) => {
             setProduct(response.data);
-            // get category
-            api.get(`/categories/${response.data.category_id}`)
-                .then((response) => {
-                setCategory(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching categories:', error);
-            });
+            
         })
         .catch((error) => {
             console.error('Error fetching Products:', error);
@@ -135,6 +127,8 @@ export default function ProductDetails(){
 
     const navigate = useNavigate()
    
+    console.log(product);
+    
     
     function handleEdit(){
         navigate(`/products/product-edit/${id}`)
@@ -146,7 +140,7 @@ export default function ProductDetails(){
             <FormDiv>
 
                 <ProfilePicDiv>
-                    <ProfilePic src={`http://akemihouse-backend.test/storage/${product.image_path}`} alt="Profile Pic" />
+                    <ProfilePic src={`http://akemihouse-backend.test/storage/${product.image?.image_path}`} alt="Profile Pic" />
                 </ProfilePicDiv>
 
                 <Label htmlFor="name">Nombre</Label>
@@ -158,7 +152,7 @@ export default function ProductDetails(){
                 <Label htmlFor="stock">Cantidad en Stock</Label>
                 <Text type="number" value={product.stock} disabled/>
                 <Label htmlFor="category">Categoría</Label>
-                <Text type="text" value={category.name} disabled/>
+                <Text type="text" value={product.category?.name} disabled/>
                 
                
                

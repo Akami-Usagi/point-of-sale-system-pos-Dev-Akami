@@ -53,7 +53,7 @@ export default function ProductCard({data}){
     return(
         <CardDiv>
             <ProductDiv>
-                <ProductPic src={`http://akemihouse-backend.test/storage/${data.image_path}`} alt="picture" />   
+                <ProductPic src={`http://akemihouse-backend.test/storage/${data.image?.image_path}`} alt="picture" />   
             </ProductDiv>
             <Title>{data.name}</Title>
             <Description>{data.description}</Description>

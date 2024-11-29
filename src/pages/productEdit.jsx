@@ -117,8 +117,7 @@ export default function ProductEdit(){
     const [product, setProduct] = useState([]);
     const {id} = useParams();
 
-    const [file, setFile] = useState("")
-    const [image, setImage] = useState(null);
+    const [file, setFile] = useState("");
     const [imageId, setImageId] = useState(0);
     const [imageChange, setImageChange] = useState(null);
     const [name, setName] = useState("");
@@ -138,7 +137,6 @@ export default function ProductEdit(){
             setStock(response.data.stock);
             setPrice(response.data.price);
             setCategory_id(response.data.category_id);
-            setImage(response.data.image_path)
             setImageId(response.data.image_id)
             setFile(`http://akemihouse-backend.test/storage/${response.data.image.image_path}`)
         })

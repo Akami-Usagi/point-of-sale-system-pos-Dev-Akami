@@ -127,9 +127,7 @@ export default function ProductDetails(){
 
     const navigate = useNavigate()
    
-    console.log(product);
-    
-    
+        
     function handleEdit(){
         navigate(`/products/product-edit/${id}`)
     }

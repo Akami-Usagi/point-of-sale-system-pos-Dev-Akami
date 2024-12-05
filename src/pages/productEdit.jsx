@@ -192,8 +192,8 @@ export default function ProductEdit(){
                                 
                 // Crear el producto
                 const productResponse = await api.put(`/products/${product.id}`, updatedFormData);
-                
-                alert("Producto guardado correctamente, " + productResponse.data.message);
+                const imageResponse = await api.delete(`/images/${imageId}`)
+                alert("Producto guardado correctamente, " + productResponse.data.message + " " + imageResponse.data.message);
                 navigate("/products");
             } catch (error) {
                 console.error("Error al enviar los datos", error.response?.data);

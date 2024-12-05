@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { backgroundColor } from "../styles";
+import { useState } from "react";
+import api from "../api";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = styled.div`
     width: 100%;
@@ -62,13 +65,51 @@ const Button = styled.button`
         cursor: pointer;
     }
 `
-
 const Title = styled.h1`
     font-size: x-large;
     text-align: center;
 `
 
 export default function Register(){
+
+    const navigate = useNavigate();
+
+    const [name, setName] = useState("");
+    const [document, setDocument] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const formData = {
+        name,
+        document,
+        phone,
+        email,
+        password,
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {            
+            
+            
+            // Crear el usuario
+            const Response = await api.post("/users", formData);
+            alert("Producto guardado correctamente, " + Response.data.message);
+            navigate("/");
+        } catch (error) {
+            console.error("Error al enviar los datos", error.response?.data);
+            alert("Ocurrió un error al enviar los datos. " + error.response?.data.message);
+        }
+    };
+
+
+    const handleTest = () =>{
+        console.log(formData);
+        
+    }
+   
     return(
         <RegisterPage>
             
@@ -76,22 +117,37 @@ export default function Register(){
             <FormDiv>
             <Title>Completa el formulario de registro</Title>
                 <Label htmlFor="name">Nombre</Label>
-                <Input type="text" placeholder="Ingrese su Nombre"/>
+                <Input type="text" placeholder="Ingrese su Nombre" onChange={(event)=>{
+                    setName(event.target.value);
+                }}/>
+
                 <Label htmlFor="documento">Documento</Label>
-                <Input type="number" placeholder="Ingrese su numero de documento"/>
+                <Input type="text" placeholder="Ingrese su numero de documento" onChange={(event)=>{
+                    setDocument(event.target.value);
+                }}/>
                 
                 <Label htmlFor="phone">Telefono</Label>
-                <Input type="number" placeholder="Ingrese su Telefono"/>
+                <Input type="text" placeholder="Ingrese su Telefono" onChange={(event)=>{
+                    setPhone(event.target.value);
+                }}/>
+
                 <Label htmlFor="email">Correo Electronico</Label>
-                <Input type="email" placeholder="Ingrese su Email"/>
+                <Input type="text" placeholder="Ingrese su Email" onChange={(event)=>{
+                    setEmail(event.target.value);
+                }}/>
                 
                 <Label htmlFor="confirmEmail">Confirmar Correo Electronico</Label>
                 <Input type="text" placeholder="Confirme su Email"/>
+
                 <Label htmlFor="password">Contraseña</Label>
-                <Input type="password" placeholder="Ingrese su Contraseña"/>
+                <Input type="password" placeholder="Ingrese su Contraseña" onChange={(event)=>{
+                    setPassword(event.target.value);
+                }}/>
+
                 <Label htmlFor="confirmPassword">Confirmar Contraseña</Label>
                 <Input type="password" placeholder="Confirme su Contraseña"/>
-                <Button>Registrarse</Button>
+
+                <Button onClick={handleSubmit}>Registrarse</Button>
             </FormDiv>
         </RegisterPage>
     )

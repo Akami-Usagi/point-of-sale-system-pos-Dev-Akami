@@ -14,7 +14,7 @@ const ProfilePage = styled.div`
     align-items: center;
     
 `
-const FormDiv = styled.div`
+const FormDiv = styled.form`
     width: 400px;
     margin-top: 30px;
     height: fit-content;
@@ -179,7 +179,7 @@ export default function NewProduct(){
     return(
         <ProfilePage>
             
-            <FormDiv>
+            <FormDiv onSubmit={handleSubmit}>
                 <ProfilePicDiv>
                     <ProfilePic src={file} alt="Profile Pic" />
                 </ProfilePicDiv>
@@ -219,7 +219,7 @@ export default function NewProduct(){
                     ))}
                 </Select>
                 
-                <Button onClick={handleSubmit}>Guardar Producto</Button>
+                <Button type="submit">Guardar Producto</Button>
             </FormDiv>
         </ProfilePage>
     )

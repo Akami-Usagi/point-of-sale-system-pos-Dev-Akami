@@ -89,9 +89,7 @@ export default function Login(){
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
-    function handleNavigate (){
-        navigate("/dashboard")
-    }
+    
 
 
     const handleLogin = async (e) => {

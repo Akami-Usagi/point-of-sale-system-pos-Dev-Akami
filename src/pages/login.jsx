@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { backgroundColor } from "../styles";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import api from "../api";
 
 const LoginPage = styled.div`
     width: 100%;  
@@ -11,7 +13,7 @@ const LoginPage = styled.div`
     margin-top: 50px;
     
 `
-const FormDiv = styled.div`
+const FormDiv = styled.form`
     width: 400px;
     height: fit-content;
     background-color: white;
@@ -83,23 +85,40 @@ const RegisterText = styled.p`
 
 export default function Login(){
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const navigate = useNavigate();
     function handleNavigate (){
         navigate("/dashboard")
     }
 
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await api.post('/login', { email, password });
+          alert('Login successful:', response.data);
+          navigate("/dashboard")
+        } catch (error) {
+          console.error('Login failed:', error.response.data.message);
+        }
+      };
+
+
+
     return(
         <LoginPage>
             <Logo src="/images/main_logo.svg" alt="Logo" />
             
-            <FormDiv>
+            <FormDiv onSubmit={handleLogin}>
             <Title>INICIAR SESION</Title>
                 <Label htmlFor="username">Usuario</Label>
-                <Input type="text" placeholder="Ingrese su Usuario"/>
-                <Label htmlFor="username">Contraseña</Label>
-                <Input type="text" placeholder="Ingrese su Contraseña"/>
+                <Input type="text" id="username" placeholder="Ingrese su Usuario" onChange={(event) => setEmail(event.target.value)}/>
+                <Label htmlFor="password">Contraseña</Label>
+                <Input type="password" id="password" placeholder="Ingrese su Contraseña" onChange={(event) => setPassword(event.target.value)}/>
                 <ForgotText>Olvido la contraseña? <Link to={"/recovery"}>Restablecer contraseña</Link></ForgotText>
-                <Button onClick={handleNavigate}>Iniciar Sesion</Button>
+                <Button type="submit">Iniciar Sesion</Button>
                 <RegisterText>No tienes cuenta? <Link to={"/register"}>Registrate</Link></RegisterText>
             </FormDiv>
         </LoginPage>

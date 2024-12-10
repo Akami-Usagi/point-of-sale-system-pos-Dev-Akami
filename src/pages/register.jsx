@@ -92,7 +92,7 @@ export default function Register(){
         }
 
         try {            
-            // Crear el usuario
+            // autentica el usuario
             const response = await api.post("/users", {name, document, phone, email, password});
             alert("Producto guardado correctamente, " + response.data.message);
             navigate("/");

@@ -96,10 +96,10 @@ export default function Login(){
         e.preventDefault();
         try {
           const response = await api.post('/login', { email, password });
-          alert('Login successful:', response.data);
+          alert(`Loggin successfull: ${response.data.message}`);
           navigate("/dashboard")
         } catch (error) {
-          console.error('Login failed:', error.response.data.message);
+          alert(`Login failed: ${error.response.data.message}`);
         }
       };
 

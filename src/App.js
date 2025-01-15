@@ -5,6 +5,8 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import PasswordRecovery from "./pages/passwordRecovery";
 import Dashboard from "./pages/dashboard";
+import Sales from "./pages/sales";
+import Invoices from "./pages/invoices";
 import Profile from "./pages/profile";
 import Products from "./pages/products";
 import ProductDetails from "./pages/productDetails";
@@ -23,6 +25,8 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/recovery" element={<PasswordRecovery/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/sales" element={<Sales/>}/>
+        <Route path="/invoices" element={<Invoices/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/products" element={<Products/>}/>
         <Route path="/products/details/:id" element={<ProductDetails/>}/>

@@ -47,25 +47,29 @@ const LinkContainer = styled.div`
 export default function Sidebar(){
 
     const navigate = useNavigate();
-    function gotoLogin (){
-        navigate("/")
-    }
+    
     function gotoDashboard (){
         navigate("/dashboard")
     }
     function gotoProducts (){
         navigate("/products")
     }
+    function gotoSales (){
+        navigate("/sales")
+    }
+    function gotoInvoices (){
+        navigate("/invoices")
+    }
 
     return(
         <SidebarDiv>
-            <SidebarLogo src="/images/main_logo.svg" alt="Logo" onClick={gotoLogin}/>
+            <SidebarLogo src="/images/main_logo.svg" alt="Logo"/>
             <NavigationDiv>
                 <LinkContainer onClick={gotoDashboard}>
                     <MdSpaceDashboard />
                     <p>Dashboard</p>
                 </LinkContainer>
-                <LinkContainer onClick={gotoDashboard}>
+                <LinkContainer onClick={gotoSales}>
                     <MdOutlinePointOfSale />
                     <p>Ventas</p>
                 </LinkContainer>
@@ -73,7 +77,7 @@ export default function Sidebar(){
                     <FaBoxesPacking />
                     <p>Productos</p>
                 </LinkContainer>
-                <LinkContainer>
+                <LinkContainer onClick={gotoInvoices}>
                     <FaFileAlt />
                     <p>Facturas</p>
                 </LinkContainer>

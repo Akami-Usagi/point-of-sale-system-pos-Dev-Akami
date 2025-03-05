@@ -65,22 +65,22 @@ export default function Sidebar(){
         <SidebarDiv>
             <SidebarLogo src="/images/main_logo.svg" alt="Logo"/>
             <NavigationDiv>
-                <LinkContainer onClick={gotoDashboard}>
+                {/*<LinkContainer onClick={gotoDashboard}>
                     <MdSpaceDashboard />
                     <p>Dashboard</p>
                 </LinkContainer>
                 <LinkContainer onClick={gotoSales}>
                     <MdOutlinePointOfSale />
                     <p>Ventas</p>
-                </LinkContainer>
+                </LinkContainer>*/}
                 <LinkContainer onClick={gotoProducts}>
                     <FaBoxesPacking />
                     <p>Productos</p>
                 </LinkContainer>
-                <LinkContainer onClick={gotoInvoices}>
+                {/*<LinkContainer onClick={gotoInvoices}>
                     <FaFileAlt />
                     <p>Facturas</p>
-                </LinkContainer>
+                </LinkContainer>*/}
             </NavigationDiv>
             
         </SidebarDiv>

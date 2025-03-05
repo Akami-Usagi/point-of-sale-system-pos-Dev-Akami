@@ -97,7 +97,7 @@ export default function Login(){
         try {
           const response = await api.post('/login', { email, password });
           alert(`Loggin successfull: ${response.data.message}`);
-          navigate("/dashboard")
+          navigate("/products")
         } catch (error) {
           alert(`Login failed: ${error.response.data.message}`);
         }

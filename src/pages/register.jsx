@@ -74,11 +74,11 @@ export default function Register(){
 
     const navigate = useNavigate();
 
-    const [name, setName] = useState("tets");
-    const [document, setDocument] = useState("12345");
-    const [phone, setPhone] = useState("12345");
-    const [email, setEmail] = useState("test@test.com");
-    const [password, setPassword] = useState("testerpass");
+    const [name, setName] = useState("");
+    const [document, setDocument] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     
 
